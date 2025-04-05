@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c ece118_base/BOARD.c ece118_base/AD.c ece118_base/serial.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c ece118_base/BOARD.c ece118_base/AD.c ece118_base/serial.c ece118_base/roach.c ece118_base/pwm.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/ece118_base/BOARD.o ${OBJECTDIR}/ece118_base/AD.o ${OBJECTDIR}/ece118_base/serial.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/ece118_base/BOARD.o.d ${OBJECTDIR}/ece118_base/AD.o.d ${OBJECTDIR}/ece118_base/serial.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/ece118_base/BOARD.o ${OBJECTDIR}/ece118_base/AD.o ${OBJECTDIR}/ece118_base/serial.o ${OBJECTDIR}/ece118_base/roach.o ${OBJECTDIR}/ece118_base/pwm.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/ece118_base/BOARD.o.d ${OBJECTDIR}/ece118_base/AD.o.d ${OBJECTDIR}/ece118_base/serial.o.d ${OBJECTDIR}/ece118_base/roach.o.d ${OBJECTDIR}/ece118_base/pwm.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/ece118_base/BOARD.o ${OBJECTDIR}/ece118_base/AD.o ${OBJECTDIR}/ece118_base/serial.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/ece118_base/BOARD.o ${OBJECTDIR}/ece118_base/AD.o ${OBJECTDIR}/ece118_base/serial.o ${OBJECTDIR}/ece118_base/roach.o ${OBJECTDIR}/ece118_base/pwm.o
 
 # Source Files
-SOURCEFILES=main.c ece118_base/BOARD.c ece118_base/AD.c ece118_base/serial.c
+SOURCEFILES=main.c ece118_base/BOARD.c ece118_base/AD.c ece118_base/serial.c ece118_base/roach.c ece118_base/pwm.c
 
 
 
@@ -101,54 +101,78 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/main.o: main.c  .generated_files/flags/part_2/9ce3396877e814d7cd2210a404ba08bda5b93fd .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/main.o: main.c  .generated_files/flags/part_2/d970f60208cac2dce129ae6332941e720e850fff .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/BOARD.o: ece118_base/BOARD.c  .generated_files/flags/part_2/680b1fc68e79eef7e56eb917aa218846f43c2e95 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/BOARD.o: ece118_base/BOARD.c  .generated_files/flags/part_2/a7804b44f4ad4c66b64edc52fc4c4f28ff26fef .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/BOARD.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/BOARD.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/ece118_base/BOARD.o.d" -o ${OBJECTDIR}/ece118_base/BOARD.o ece118_base/BOARD.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/AD.o: ece118_base/AD.c  .generated_files/flags/part_2/3afda7324fd240a08b1d35ebc68313f3984ac35c .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/AD.o: ece118_base/AD.c  .generated_files/flags/part_2/e4b1a4aec752757db3f421764bcc112c1d829423 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/AD.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/AD.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/ece118_base/AD.o.d" -o ${OBJECTDIR}/ece118_base/AD.o ece118_base/AD.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/serial.o: ece118_base/serial.c  .generated_files/flags/part_2/a1ca7dd876537d8dc3f3f35e5984c65664326a87 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/serial.o: ece118_base/serial.c  .generated_files/flags/part_2/3181ef081d6ae742535b31fa41b86e854acadb63 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/serial.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/serial.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/ece118_base/serial.o.d" -o ${OBJECTDIR}/ece118_base/serial.o ece118_base/serial.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
+${OBJECTDIR}/ece118_base/roach.o: ece118_base/roach.c  .generated_files/flags/part_2/65f1a2cef9250b38984368f8295adee8e59f2e29 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/ece118_base" 
+	@${RM} ${OBJECTDIR}/ece118_base/roach.o.d 
+	@${RM} ${OBJECTDIR}/ece118_base/roach.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/ece118_base/roach.o.d" -o ${OBJECTDIR}/ece118_base/roach.o ece118_base/roach.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
+${OBJECTDIR}/ece118_base/pwm.o: ece118_base/pwm.c  .generated_files/flags/part_2/cd07ef43e7502dee26687d0f0f2f34bc3808e4d9 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/ece118_base" 
+	@${RM} ${OBJECTDIR}/ece118_base/pwm.o.d 
+	@${RM} ${OBJECTDIR}/ece118_base/pwm.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/ece118_base/pwm.o.d" -o ${OBJECTDIR}/ece118_base/pwm.o ece118_base/pwm.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
 else
-${OBJECTDIR}/main.o: main.c  .generated_files/flags/part_2/371387a4cc22f6bcc3c318f73def20e690d641af .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/main.o: main.c  .generated_files/flags/part_2/1b896bc3bae065b0e88ac982a25c2bae3b5357a5 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/BOARD.o: ece118_base/BOARD.c  .generated_files/flags/part_2/26a698158c72a79d0f1832792e43cc071f0b4586 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/BOARD.o: ece118_base/BOARD.c  .generated_files/flags/part_2/d36e37488adf35c45ad91d3ded7378eac165d1bc .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/BOARD.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/BOARD.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/ece118_base/BOARD.o.d" -o ${OBJECTDIR}/ece118_base/BOARD.o ece118_base/BOARD.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/AD.o: ece118_base/AD.c  .generated_files/flags/part_2/f1e6fb7a21fb40e9a326b57f067f060589e28a0d .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/AD.o: ece118_base/AD.c  .generated_files/flags/part_2/5ddd12c1cc27a8e9c70f0fa57085355a24c60490 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/AD.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/AD.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/ece118_base/AD.o.d" -o ${OBJECTDIR}/ece118_base/AD.o ece118_base/AD.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/serial.o: ece118_base/serial.c  .generated_files/flags/part_2/52563967f1df780f6197b8b13ebc63b1e7c1db81 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/serial.o: ece118_base/serial.c  .generated_files/flags/part_2/bffa050517253d80e526511c9c12256f32b8541c .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/serial.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/serial.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/ece118_base/serial.o.d" -o ${OBJECTDIR}/ece118_base/serial.o ece118_base/serial.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
+${OBJECTDIR}/ece118_base/roach.o: ece118_base/roach.c  .generated_files/flags/part_2/76047289cbc91b5ba71bfecc43bb80c240358c3a .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/ece118_base" 
+	@${RM} ${OBJECTDIR}/ece118_base/roach.o.d 
+	@${RM} ${OBJECTDIR}/ece118_base/roach.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/ece118_base/roach.o.d" -o ${OBJECTDIR}/ece118_base/roach.o ece118_base/roach.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
+	
+${OBJECTDIR}/ece118_base/pwm.o: ece118_base/pwm.c  .generated_files/flags/part_2/c62c7cc2961a4267a5798c1e14e9c5de11d05cd9 .generated_files/flags/part_2/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/ece118_base" 
+	@${RM} ${OBJECTDIR}/ece118_base/pwm.o.d 
+	@${RM} ${OBJECTDIR}/ece118_base/pwm.o 
+	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DPART_2 -I"ece118_base" -I"." -MP -MMD -MF "${OBJECTDIR}/ece118_base/pwm.o.d" -o ${OBJECTDIR}/ece118_base/pwm.o ece118_base/pwm.c    -DXPRJ_part_2=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 endif
 
