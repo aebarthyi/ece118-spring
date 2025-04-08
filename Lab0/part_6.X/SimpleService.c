@@ -29,7 +29,8 @@
 /*******************************************************************************
  * MODULE #DEFINES                                                             *
  ******************************************************************************/
-
+#define LIGHT_LOW_THRESHOLD 480
+#define LIGHT_HIGH_THRESHOLD 530
 /*******************************************************************************
  * PRIVATE FUNCTION PROTOTYPES                                                 *
  ******************************************************************************/
@@ -107,12 +108,12 @@ uint8_t InitBumperService(uint8_t Priority)
  * @author J. Edward Carryer, 2011.10.23 19:25 */
 uint8_t PostLightSensorService(ES_Event ThisEvent)
 {
-    return ES_PostToService(MyPriority, ThisEvent);
+    return ES_PostToService(1, ThisEvent);
 }
 
 uint8_t PostBumperService(ES_Event ThisEvent)
 {
-    return ES_PostToService(MyPriority, ThisEvent);
+    return ES_PostToService(2, ThisEvent);
 }
 /**
  * @Function RunTemplateService(ES_Event ThisEvent)
@@ -133,6 +134,7 @@ ES_Event RunLightSensorService(ES_Event ThisEvent)
      *******************************************/
     static ES_EventTyp_t lastEvent = LIGHT_SENSOR_DARK;
     ES_EventTyp_t curEvent;
+    ES_Event thisEvent;
     unsigned int scaledValue = Roach_LightLevel();
 
     switch (ThisEvent.EventType) {
@@ -142,12 +144,29 @@ ES_Event RunLightSensorService(ES_Event ThisEvent)
         //
         // This section is used to reset service for some reason
         break;
-
-    case LIGHT_SENSOR_DARK:
-        printf("LIGHT SENSOR IS IN THE DARK\n");
         
+    case ES_TIMEOUT:
+        if (scaledValue > LIGHT_HIGH_THRESHOLD) { // is battery connected?
+            curEvent = LIGHT_SENSOR_DARK;
+        } else if(scaledValue < LIGHT_LOW_THRESHOLD){
+            curEvent = LIGHT_SENSOR_LIGHT;
+        }
+        if (curEvent != lastEvent) { // check for change from last time
+            ReturnEvent.EventType = curEvent;
+            ReturnEvent.EventParam = scaledValue;
+            lastEvent = curEvent; // update history
+            PostLightSensorService(ReturnEvent);
+        }
+        break;
+    
+    case LIGHT_SENSOR_DARK:
+        printf("\nlight sensor is in the dark");
+        break;
+    
     case LIGHT_SENSOR_LIGHT:
-        printf("LIGHT SENSOR IS IN THE LIGHT\n");
+        printf("\nlight sensor is in the light");
+        break;
+        
 #ifdef SIMPLESERVICE_TEST     // keep this as is for test harness      
     default:
         printf("\r\nEvent: %s\tParam: 0x%X",

@@ -35,8 +35,8 @@
 /*******************************************************************************
  * MODULE #DEFINES                                                             *
  ******************************************************************************/
-#define LIGHT_THRESHOLD 512
-
+#define LIGHT_LOW_THRESHOLD 480
+#define LIGHT_HIGH_THRESHOLD 530
 /*******************************************************************************
  * EVENTCHECKER_TEST SPECIFIC CODE                                                             *
  ******************************************************************************/
@@ -93,9 +93,9 @@ uint8_t BetterCheckLightSensor(void) {
     ES_Event thisEvent;
     uint8_t returnVal = FALSE;
     unsigned int scaledValue = Roach_LightLevel(); // read the battery voltage
-    if (scaledValue > LIGHT_THRESHOLD) { // is battery connected?
+    if (scaledValue > LIGHT_HIGH_THRESHOLD) { // is battery connected?
         curEvent = LIGHT_SENSOR_DARK;
-    } else {
+    } else if(scaledValue < LIGHT_LOW_THRESHOLD){
         curEvent = LIGHT_SENSOR_LIGHT;
     }
     if (curEvent != lastEvent) { // check for change from last time
