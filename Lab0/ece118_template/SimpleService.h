@@ -1,9 +1,9 @@
 /*
- * File: TemplateService.h
+ * File: SimpleService.h
  * Author: J. Edward Carryer
  * Modified: Gabriel H Elkaim
  *
- * Template file to set up a simple service to work with the Events and Services
+ * Simple file to set up a simple service to work with the Events and Services
  * Framework (ES_Framework) on the Uno32 for the CMPE-118/L class. Note that this file
  * will need to be modified to fit your exact needs, and most of the names will have
  * to be changed to match your code.
@@ -14,8 +14,8 @@
  * Updated on 13/Nov/2013
  */
 
-#ifndef TemplateService_H  // <- This should be changed to your own guard on both
-#define TemplateService_H  //    of these lines
+#ifndef SIMPLESERVICE_H  // <- This should be changed to your own guard on both
+#define SIMPLESERVICE_H  //    of these lines
 
 
 /*******************************************************************************
@@ -40,19 +40,21 @@
 
  
 /**
- * @Function InitTemplateService(uint8_t Priority)
+ * @Function InitSimpleService(uint8_t Priority)
  * @param Priority - internal variable to track which event queue to use
  * @return TRUE or FALSE
  * @brief This will get called by the framework at the beginning of the code
  *        execution. It will post an ES_INIT event to the appropriate event
- *        queue, which will be handled inside RunTemplateService function. Remember
+ *        queue, which will be handled inside RunSimpleService function. Remember
  *        to rename this to something appropriate.
  *        Returns TRUE if successful, FALSE otherwise
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-uint8_t InitTemplateService(uint8_t Priority);
+uint8_t InitLightSensorService(uint8_t Priority);
+
+uint8_t InitBumperService(uint8_t Priority);
 
 /**
- * @Function PostTemplateService(ES_Event ThisEvent)
+ * @Function PostSimpleService(ES_Event ThisEvent)
  * @param ThisEvent - the event (type and param) to be posted to queue
  * @return TRUE or FALSE
  * @brief This function is a wrapper to the queue posting function, and its name
@@ -60,10 +62,12 @@ uint8_t InitTemplateService(uint8_t Priority);
  *        be posted to. Remember to rename to something appropriate.
  *        Returns TRUE if successful, FALSE otherwise
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-uint8_t PostTemplateService(ES_Event ThisEvent);
+uint8_t PostLightSensorService(ES_Event ThisEvent);
+
+uint8_t PostBumperService(ES_Event ThisEvent);
 
 /**
- * @Function RunTemplateService(ES_Event ThisEvent)
+ * @Function RunSimpleService(ES_Event ThisEvent)
  * @param ThisEvent - the event (type and param) to be responded.
  * @return Event - return event (type and param), in general should be ES_NO_EVENT
  * @brief This function is where you implement the whole of the service,
@@ -71,9 +75,10 @@ uint8_t PostTemplateService(ES_Event ThisEvent);
  * @note Remember to rename to something appropriate.
  *       Returns ES_NO_EVENT if the event have been "consumed." 
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-ES_Event RunTemplateService(ES_Event ThisEvent);
+ES_Event RunLightSensorService(ES_Event ThisEvent);
+ES_Event RunBumperService(ES_Event ThisEvent);
 
 
 
-#endif /* TemplateService_H */
+#endif /* SimpleService_H */
 

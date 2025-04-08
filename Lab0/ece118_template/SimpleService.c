@@ -22,14 +22,13 @@
 #include "AD.h"
 #include "ES_Configure.h"
 #include "ES_Framework.h"
-#include "TemplateService.h"
+#include "SimpleService.h"
 #include <stdio.h>
+#include <roach.h>
 
 /*******************************************************************************
  * MODULE #DEFINES                                                             *
  ******************************************************************************/
-
-#define BATTERY_DISCONNECT_THRESHOLD 175
 
 /*******************************************************************************
  * PRIVATE FUNCTION PROTOTYPES                                                 *
@@ -59,7 +58,26 @@ static uint8_t MyPriority;
  *        to rename this to something appropriate.
  *        Returns TRUE if successful, FALSE otherwise
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-uint8_t InitTemplateService(uint8_t Priority)
+uint8_t InitLightSensorService(uint8_t Priority)
+{
+    ES_Event ThisEvent;
+
+    MyPriority = Priority;
+
+    // in here you write your initialization code
+    // this includes all hardware and software initialization
+    // that needs to occur.
+
+    // post the initial transition event
+    ThisEvent.EventType = ES_INIT;
+    if (ES_PostToService(MyPriority, ThisEvent) == TRUE) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}
+
+uint8_t InitBumperService(uint8_t Priority)
 {
     ES_Event ThisEvent;
 
@@ -87,11 +105,15 @@ uint8_t InitTemplateService(uint8_t Priority)
  *        be posted to. Remember to rename to something appropriate.
  *        Returns TRUE if successful, FALSE otherwise
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-uint8_t PostTemplateService(ES_Event ThisEvent)
+uint8_t PostLightSensorService(ES_Event ThisEvent)
 {
     return ES_PostToService(MyPriority, ThisEvent);
 }
 
+uint8_t PostBumperService(ES_Event ThisEvent)
+{
+    return ES_PostToService(MyPriority, ThisEvent);
+}
 /**
  * @Function RunTemplateService(ES_Event ThisEvent)
  * @param ThisEvent - the event (type and param) to be responded.
@@ -101,7 +123,7 @@ uint8_t PostTemplateService(ES_Event ThisEvent)
  * @note Remember to rename to something appropriate.
  *       Returns ES_NO_EVENT if the event have been "consumed." 
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-ES_Event RunTemplateService(ES_Event ThisEvent)
+ES_Event RunLightSensorService(ES_Event ThisEvent)
 {
     ES_Event ReturnEvent;
     ReturnEvent.EventType = ES_NO_EVENT; // assume no errors
@@ -109,9 +131,9 @@ ES_Event RunTemplateService(ES_Event ThisEvent)
     /********************************************
      in here you write your service code
      *******************************************/
-    static ES_EventTyp_t lastEvent = BATTERY_DISCONNECTED;
+    static ES_EventTyp_t lastEvent = LIGHT_SENSOR_DARK;
     ES_EventTyp_t curEvent;
-    uint16_t batVoltage = AD_ReadADPin(BAT_VOLTAGE); // read the battery voltage
+    unsigned int scaledValue = Roach_LightLevel();
 
     switch (ThisEvent.EventType) {
     case ES_INIT:
@@ -121,23 +143,11 @@ ES_Event RunTemplateService(ES_Event ThisEvent)
         // This section is used to reset service for some reason
         break;
 
-    case ES_TIMEOUT:
-        if (batVoltage > BATTERY_DISCONNECT_THRESHOLD) { // is battery connected?
-            curEvent = BATTERY_CONNECTED;
-        } else {
-            curEvent = BATTERY_DISCONNECTED;
-        }
-        if (curEvent != lastEvent) { // check for change from last time
-            ReturnEvent.EventType = curEvent;
-            ReturnEvent.EventParam = batVoltage;
-            lastEvent = curEvent; // update history
-#ifndef SIMPLESERVICE_TEST           // keep this as is for test harness
-            PostTemplateService(ReturnEvent); // Change it to your target service's post function
-#else
-            PostTemplateService(ReturnEvent);
-#endif   
-        }
-        break;
+    case LIGHT_SENSOR_DARK:
+        printf("LIGHT SENSOR IS IN THE DARK\n");
+        
+    case LIGHT_SENSOR_LIGHT:
+        printf("LIGHT SENSOR IS IN THE LIGHT\n");
 #ifdef SIMPLESERVICE_TEST     // keep this as is for test harness      
     default:
         printf("\r\nEvent: %s\tParam: 0x%X",
@@ -145,6 +155,13 @@ ES_Event RunTemplateService(ES_Event ThisEvent)
         break;
 #endif
     }
+    return ReturnEvent;
+}
+
+ES_Event RunBumperService(ES_Event ThisEvent)
+{
+    ES_Event ReturnEvent;
+    ReturnEvent.EventType = ES_NO_EVENT; // assume no errors
 
     return ReturnEvent;
 }

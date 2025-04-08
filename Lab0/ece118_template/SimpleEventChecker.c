@@ -1,8 +1,8 @@
 /*
- * File:   TemplateEventChecker.c
+ * File:   SimpleEventChecker.c
  * Author: Gabriel Hugh Elkaim
  *
- * Template file to set up typical EventCheckers for the  Events and Services
+ * Simple file to set up typical EventCheckers for the  Events and Services
  * Framework (ES_Framework) on the Uno32 for the CMPE-118/L class. Note that
  * this file will need to be modified to fit your exact needs, and most of the
  * names will have to be changed to match your code.
@@ -27,24 +27,29 @@
  ******************************************************************************/
 
 #include "ES_Configure.h"
-#include "TemplateEventChecker.h"
-#include "ES_Events.h"
-#include "serial.h"
+#include "SimpleEventChecker.h"
+#include <ES_Events.h>
 #include "AD.h"
+#include <roach.h>
 
 /*******************************************************************************
  * MODULE #DEFINES                                                             *
  ******************************************************************************/
-#define BATTERY_DISCONNECT_THRESHOLD 175
+#define LIGHT_THRESHOLD 512
 
 /*******************************************************************************
  * EVENTCHECKER_TEST SPECIFIC CODE                                                             *
  ******************************************************************************/
 
 //#define EVENTCHECKER_TEST
-#ifdef EVENTCHECKER_TEST
+#ifdef SIMPLE_EVENTCHECKER_TEST
 #include <stdio.h>
 #define SaveEvent(x) do {eventName=__func__; storedEvent=x;} while (0)
+
+#define FLEFT_BUMP_MASK (1)
+#define FRIGHT_BUMP_MASK (1<<1)
+#define RLEFT_BUMP_MASK (1<<2)
+#define RRIGHT_BUMP_MASK (1<<3)
 
 static const char *eventName;
 static ES_Event storedEvent;
@@ -69,7 +74,7 @@ static ES_Event storedEvent;
  ******************************************************************************/
 
 /**
- * @Function TemplateCheckBattery(void)
+ * @Function SimpleCheckBattery(void)
  * @param none
  * @return TRUE or FALSE
  * @brief This function is a prototype event checker that checks the battery voltage
@@ -82,28 +87,49 @@ static ES_Event storedEvent;
  * @note Use this code as a template for your other event checkers, and modify as necessary.
  * @author Gabriel H Elkaim, 2013.09.27 09:18
  * @modified Gabriel H Elkaim/Max Dunne, 2016.09.12 20:08 */
-uint8_t TemplateCheckBattery(void) {
-    static ES_EventTyp_t lastEvent = BATTERY_DISCONNECTED;
+uint8_t SimpleCheckLightSensor(void) {
+    static ES_EventTyp_t lastEvent = LIGHT_SENSOR_LIGHT;
     ES_EventTyp_t curEvent;
     ES_Event thisEvent;
     uint8_t returnVal = FALSE;
-    uint16_t batVoltage = AD_ReadADPin(BAT_VOLTAGE); // read the battery voltage
-
-    if (batVoltage > BATTERY_DISCONNECT_THRESHOLD) { // is battery connected?
-        curEvent = BATTERY_CONNECTED;
+    unsigned int scaledValue = Roach_LightLevel(); // read the battery voltage
+    if (scaledValue > LIGHT_THRESHOLD) { // is battery connected?
+        curEvent = LIGHT_SENSOR_DARK;
     } else {
-        curEvent = BATTERY_DISCONNECTED;
+        curEvent = LIGHT_SENSOR_LIGHT;
     }
     if (curEvent != lastEvent) { // check for change from last time
         thisEvent.EventType = curEvent;
-        thisEvent.EventParam = batVoltage;
+        thisEvent.EventParam = scaledValue;
         returnVal = TRUE;
         lastEvent = curEvent; // update history
-#ifndef EVENTCHECKER_TEST           // keep this as is for test harness
-        PostTemplateService(thisEvent); // Change it to your target service's post function
-#else
+#ifdef SIMPLE_EVENTCHECKER_TEST
         SaveEvent(thisEvent);
 #endif   
+    }
+    return (returnVal);
+}
+
+uint8_t SimpleCheckBumpers(void) {
+    static ES_EventTyp_t lastEvent = BUMPERS_UNBUMPED;
+    ES_EventTyp_t curEvent;
+    ES_Event thisEvent;
+    uint8_t returnVal = FALSE;
+    unsigned char bumperState = Roach_ReadBumpers();
+    
+    if((bumperState & 0x1) | (bumperState & 0x2) | (bumperState & 0x4) | (bumperState & 0x8))
+        curEvent = BUMPERS_BUMPED;
+    else
+        curEvent = BUMPERS_UNBUMPED;
+    
+    if (curEvent != lastEvent) { // check for change from last time
+        thisEvent.EventType = curEvent;
+        thisEvent.EventParam = bumperState;
+        returnVal = TRUE;
+        lastEvent = curEvent; // update history
+#ifdef SIMPLE_EVENTCHECKER_TEST
+        SaveEvent(thisEvent);
+#endif  
     }
     return (returnVal);
 }
@@ -129,7 +155,7 @@ uint8_t TemplateCheckBattery(void) {
  * defined in the project, no changes are necessary for your event checkers to work
  * with your other projects.
  */
-#ifdef EVENTCHECKER_TEST
+#ifdef SIMPLE_EVENTCHECKER_TEST
 #include <stdio.h>
 static uint8_t(*EventList[])(void) = {EVENT_CHECK_LIST};
 
@@ -138,7 +164,7 @@ void PrintEvent(void);
 void main(void) {
     BOARD_Init();
     /* user initialization code goes here */
-
+    Roach_Init();
     // Do not alter anything below this line
     int i;
 

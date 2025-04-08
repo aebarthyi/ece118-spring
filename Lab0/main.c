@@ -200,29 +200,30 @@ int main(void){
 
 #endif
 
-#ifdef PART_5
-
-#include <BOARD.h>
-#include <stdio.h>
-
-int main(void){
-    BOARD_Init();
-    printf("Hello World!\n");
-    while(1){;}
-}
-
-#endif
-
 #ifdef PART_6
 
 #include <BOARD.h>
+#include "BetterEventChecker.h"
 #include <stdio.h>
+#include <roach.h>
+#include <serial.h>
 
-int main(void){
+
+void main(void) {
     BOARD_Init();
-    printf("Hello World!\n");
-    while(1){;}
+    /* user initialization code goes here */
+    Roach_Init();
+    // Do not alter anything below this line
+    int i;
+
+    printf("\r\nEvent checking test harness for %s", __FILE__);
+
+    while (1) {
+        BetterCheckLightSensor();
+        BetterCheckBumpers();
+    }
 }
+
 
 #endif
 

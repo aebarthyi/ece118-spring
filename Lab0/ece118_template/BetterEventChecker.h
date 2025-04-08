@@ -1,8 +1,8 @@
 /* 
- * File:   TemplateEventChecker.h
+ * File:   SimpleEventChecker.h
  * Author: Gabriel Hugh Elkaim
  *
- * Template file to set up typical EventCheckers for the  Events and Services
+ * Simple file to set up typical EventCheckers for the  Events and Services
  * Framework (ES_Framework) on the Uno32 for the CMPE-118/L class. Note that
  * this file will need to be modified to fit your exact needs, and most of the
  * names will have to be changed to match your code.
@@ -19,8 +19,8 @@
  * Modified on September 12, 2016, 7:59 PM
  */
 
-#ifndef TEMPLATEEVENTCHECKER_H
-#define	TEMPLATEEVENTCHECKER_H
+#ifndef SIMPLEEVENTCHECKER_H
+#define	SIMPLEEVENTCHECKER_H
 
 /*******************************************************************************
  * PUBLIC #INCLUDES                                                            *
@@ -44,7 +44,7 @@
  ******************************************************************************/
 
 /**
- * @Function TemplateCheckBattery(void)
+ * @Function SimpleCheckBattery(void)
  * @param none
  * @return TRUE or FALSE
  * @brief This function is a prototype event checker that checks the battery voltage
@@ -57,9 +57,11 @@
  * @note Use this code as a template for your other event checkers, and modify as necessary.
  * @author Gabriel H Elkaim, 2013.09.27 09:18
  * @modified Gabriel H Elkaim/Max Dunne, 2016.09.12 20:08 */
-uint8_t TemplateCheckBattery(void);
+uint8_t BetterCheckLightSensor(void);
 
+uint8_t BetterCheckBumpers(void);
 
+void PrintEvent(void);
 
 #endif	/* TEMPLATEEVENTCHECKER_H */
 

@@ -47,6 +47,10 @@ typedef enum {
     BATTERY_CONNECTED,
     BATTERY_DISCONNECTED,
 	/* User-defined events end here */
+    LIGHT_SENSOR_DARK,
+    LIGHT_SENSOR_LIGHT,
+    BUMPERS_BUMPED,
+    BUMPERS_UNBUMPED,
     NUMBEROFEVENTS,
 } ES_EventTyp_t;
 
@@ -63,6 +67,10 @@ static const char *EventNames[] = {
 	"ES_TIMERSTOPPED",
 	"BATTERY_CONNECTED",
 	"BATTERY_DISCONNECTED",
+    "LIGHT_SENSOR_DARK",
+    "LIGHT_SENSOR_LIGHT",
+    "BUMPERS_BUMPED",
+    "BUMPERS_UNBUMPED",
 	"NUMBEROFEVENTS",
 };
 
@@ -71,11 +79,19 @@ static const char *EventNames[] = {
 
 /****************************************************************************/
 // This are the name of the Event checking function header file.
-#define EVENT_CHECK_HEADER "TemplateEventChecker.h"
+#ifdef SIMPLE_EVENTCHECKER_TEST
+#define EVENT_CHECK_HEADER "SimpleEventChecker.h"
+#else
+#define EVENT_CHECK_HEADER "BetterEventChecker.h"
+#endif
 
 /****************************************************************************/
 // This is the list of event checking functions
-#define EVENT_CHECK_LIST  TemplateCheckBattery
+#ifdef SIMPLE_EVENTCHECKER_TEST
+#define EVENT_CHECK_LIST  SimpleCheckLightSensor, SimpleCheckBumpers
+#else
+#define EVENT_CHECK_LIST  BetterCheckLightSensor, BetterCheckBumpers
+#endif
 
 /****************************************************************************/
 // These are the definitions for the post functions to be executed when the
@@ -118,7 +134,7 @@ static const char *EventNames[] = {
 /****************************************************************************/
 // This macro determines that nuber of services that are *actually* used in
 // a particular application. It will vary in value from 1 to MAX_NUM_SERVICES
-#define NUM_SERVICES 1
+#define NUM_SERVICES 3
 
 /****************************************************************************/
 // These are the definitions for Service 0, the lowest priority service
@@ -138,11 +154,11 @@ static const char *EventNames[] = {
 // These are the definitions for Service 1
 #if NUM_SERVICES > 1
 // the header file with the public fuction prototypes
-#define SERV_1_HEADER "TestService.h"
+#define SERV_1_HEADER "SimpleService.h"
 // the name of the Init function
-#define SERV_1_INIT TestServiceInit
+#define SERV_1_INIT InitLightSensorService
 // the name of the run function
-#define SERV_1_RUN TestServiceRun
+#define SERV_1_RUN RunLightSensorService
 // How big should this services Queue be?
 #define SERV_1_QUEUE_SIZE 3
 #endif
@@ -150,11 +166,11 @@ static const char *EventNames[] = {
 // These are the definitions for Service 2
 #if NUM_SERVICES > 2
 // the header file with the public fuction prototypes
-#define SERV_2_HEADER "TestService.h"
+#define SERV_2_HEADER "SimpleService.h"
 // the name of the Init function
-#define SERV_2_INIT TestServiceInit
+#define SERV_2_INIT InitBumperService
 // the name of the run function
-#define SERV_2_RUN TestServiceRun
+#define SERV_2_RUN RunBumperService
 // How big should this services Queue be?
 #define SERV_2_QUEUE_SIZE 3
 #endif
@@ -256,7 +272,5 @@ static const char *EventNames[] = {
 #if NUM_DIST_LISTS > 7 
 #define DIST_LIST7 PostTemplateFSM
 #endif
-
-
 
 #endif /* CONFIGURE_H */
