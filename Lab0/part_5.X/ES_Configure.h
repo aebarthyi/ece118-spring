@@ -79,19 +79,11 @@ static const char *EventNames[] = {
 
 /****************************************************************************/
 // This are the name of the Event checking function header file.
-#ifdef SIMPLE_EVENTCHECKER_TEST
 #define EVENT_CHECK_HEADER "SimpleEventChecker.h"
-#else
-#define EVENT_CHECK_HEADER "BetterEventChecker.h"
-#endif
 
 /****************************************************************************/
 // This is the list of event checking functions
-#ifdef SIMPLE_EVENTCHECKER_TEST
 #define EVENT_CHECK_LIST  SimpleCheckLightSensor, SimpleCheckBumpers
-#else
-#define EVENT_CHECK_LIST  BetterCheckLightSensor, BetterCheckBumpers
-#endif
 
 /****************************************************************************/
 // These are the definitions for the post functions to be executed when the
@@ -134,7 +126,7 @@ static const char *EventNames[] = {
 /****************************************************************************/
 // This macro determines that nuber of services that are *actually* used in
 // a particular application. It will vary in value from 1 to MAX_NUM_SERVICES
-#define NUM_SERVICES 3
+#define NUM_SERVICES 1
 
 /****************************************************************************/
 // These are the definitions for Service 0, the lowest priority service
