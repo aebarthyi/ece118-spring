@@ -1,54 +1,32 @@
-# Prerequisites
 *.d
-
-# Object files
-*.o
-*.ko
+*.pre
+*.p1
+*.lst
+*.sym
 *.obj
-*.elf
-
-# Linker output
-*.ilk
+*.o
+*.sdb
+*.obj.dmp
+*.mk
 *.map
-*.exp
+*.properties
+*.production
+*.debug
+html/
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+Lab*/part_*/nbproject/private/
+Lab*/part_*/nbproject/Package-*.bash
+Lab*/part_*/build/
+Lab*/part_*/nbbuild/
+Lab*/part_*/dist/
+Lab*/part_*/nbdist/
+Lab*/part_*/nbactions.xml
+Lab*/part_*/nb-configuration.xml
+Lab*/part_*/funclist
+Lab*/part_*/nbproject/Makefile-*
+Lab*/part_*/disassembly/
+Lab*/part_*/.generated_files/
 
 Lab*/.generated_files
+Lab*/nbproject/private/
+Lab*/nbproject/Makefile-*
