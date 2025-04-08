@@ -19,7 +19,7 @@ endif
 endif
 
 # Environment
-MKDIR=gnumkdir -p
+MKDIR=mkdir -p
 RM=rm -f 
 MV=mv 
 CP=cp 
@@ -101,230 +101,230 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/main.o: main.c  .generated_files/flags/part_5/2a5126fc4dbcbc3013c0ac65a9105a44d001ad52 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/main.o: main.c  .generated_files/flags/part_5/ade66e103346ef74b9cdb0d0b630f2629ac65469 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/BOARD.o: ece118_base/BOARD.c  .generated_files/flags/part_5/49f1a0607ec2418efb265a92512f3f5eb3e0b6ba .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/BOARD.o: ece118_base/BOARD.c  .generated_files/flags/part_5/f4e27faa5b7209b3a27e55e9e34cd9edac0336d9 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/BOARD.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/BOARD.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/BOARD.o.d" -o ${OBJECTDIR}/ece118_base/BOARD.o ece118_base/BOARD.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/AD.o: ece118_base/AD.c  .generated_files/flags/part_5/4b6dca7becb662dfabcfb8989af5ed0e0a696aa1 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/AD.o: ece118_base/AD.c  .generated_files/flags/part_5/b375bacdbf564a6ea8d40efa38f23559e6d83907 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/AD.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/AD.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/AD.o.d" -o ${OBJECTDIR}/ece118_base/AD.o ece118_base/AD.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/serial.o: ece118_base/serial.c  .generated_files/flags/part_5/58c9a4f16317e0365389fb95bcb45901e26d2c7d .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/serial.o: ece118_base/serial.c  .generated_files/flags/part_5/e93079d8fc9cdf59bbd9f931741cc95e80301d43 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/serial.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/serial.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/serial.o.d" -o ${OBJECTDIR}/ece118_base/serial.o ece118_base/serial.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/roach.o: ece118_base/roach.c  .generated_files/flags/part_5/89923145536246278d87acf4892e9678f0968327 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/roach.o: ece118_base/roach.c  .generated_files/flags/part_5/d759e804168e283cf24db9c56f08f9a6daee2736 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/roach.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/roach.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/roach.o.d" -o ${OBJECTDIR}/ece118_base/roach.o ece118_base/roach.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/pwm.o: ece118_base/pwm.c  .generated_files/flags/part_5/21cc620682d640dd311c56febb9d34a4ded0e30f .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/pwm.o: ece118_base/pwm.c  .generated_files/flags/part_5/dfa3c27d5a9d0b980a177ce7328a734079bc31e0 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/pwm.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/pwm.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/pwm.o.d" -o ${OBJECTDIR}/ece118_base/pwm.o ece118_base/pwm.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_template/SimpleEventChecker.o: ece118_template/SimpleEventChecker.c  .generated_files/flags/part_5/c491765bb073753fd5544c58475936d19b898438 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_template/SimpleEventChecker.o: ece118_template/SimpleEventChecker.c  .generated_files/flags/part_5/415c92b64eb1b3fed54660a46c57292769cf3397 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_template" 
 	@${RM} ${OBJECTDIR}/ece118_template/SimpleEventChecker.o.d 
 	@${RM} ${OBJECTDIR}/ece118_template/SimpleEventChecker.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_template/SimpleEventChecker.o.d" -o ${OBJECTDIR}/ece118_template/SimpleEventChecker.o ece118_template/SimpleEventChecker.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_Framework.o: ece118_base/ES_Framework.c  .generated_files/flags/part_5/a06a820a96de7e232a0a30b00efd529637333a9c .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_Framework.o: ece118_base/ES_Framework.c  .generated_files/flags/part_5/efcb6b5be741ca2f7c96005623464fae21e8b613 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Framework.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Framework.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_Framework.o.d" -o ${OBJECTDIR}/ece118_base/ES_Framework.o ece118_base/ES_Framework.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_Timers.o: ece118_base/ES_Timers.c  .generated_files/flags/part_5/d59fa44f153bb690b8f00f51fb086b5e28e380b3 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_Timers.o: ece118_base/ES_Timers.c  .generated_files/flags/part_5/f7d31c2b27134429863ebe0e5d753d85d2872927 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Timers.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Timers.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_Timers.o.d" -o ${OBJECTDIR}/ece118_base/ES_Timers.o ece118_base/ES_Timers.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_CheckEvents.o: ece118_base/ES_CheckEvents.c  .generated_files/flags/part_5/a3c2f859469ef5a24235fda97daeaf30ec88ff96 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_CheckEvents.o: ece118_base/ES_CheckEvents.c  .generated_files/flags/part_5/89139da136839f23f3f444df2322f16937f18d6f .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_CheckEvents.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_CheckEvents.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_CheckEvents.o.d" -o ${OBJECTDIR}/ece118_base/ES_CheckEvents.o ece118_base/ES_CheckEvents.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_KeyboardInput.o: ece118_base/ES_KeyboardInput.c  .generated_files/flags/part_5/c5925473738170b5d2f82f11f7f69a72d18c85fe .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_KeyboardInput.o: ece118_base/ES_KeyboardInput.c  .generated_files/flags/part_5/85b1f798ce9661ba087ec03965b9aa3d812e7f68 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_KeyboardInput.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_KeyboardInput.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_KeyboardInput.o.d" -o ${OBJECTDIR}/ece118_base/ES_KeyboardInput.o ece118_base/ES_KeyboardInput.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_LookupTables.o: ece118_base/ES_LookupTables.c  .generated_files/flags/part_5/9a0b708876cac318f37d2d4aacbd09a903f69580 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_LookupTables.o: ece118_base/ES_LookupTables.c  .generated_files/flags/part_5/154f72f05a8c85b2cbfcd88beb582c83f9f35056 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_LookupTables.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_LookupTables.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_LookupTables.o.d" -o ${OBJECTDIR}/ece118_base/ES_LookupTables.o ece118_base/ES_LookupTables.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_PostList.o: ece118_base/ES_PostList.c  .generated_files/flags/part_5/54b0248cc87bc2120da4d4552fe95d048e8bb535 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_PostList.o: ece118_base/ES_PostList.c  .generated_files/flags/part_5/4994f29492c1c4714c27e8b2ce36a927fecea400 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_PostList.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_PostList.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_PostList.o.d" -o ${OBJECTDIR}/ece118_base/ES_PostList.o ece118_base/ES_PostList.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_Queue.o: ece118_base/ES_Queue.c  .generated_files/flags/part_5/4ec8601afe7d00cb503518cb208815e5ce602c23 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_Queue.o: ece118_base/ES_Queue.c  .generated_files/flags/part_5/6a72cd6bf1cd13d397a66a438b1b605a0d07b42f .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Queue.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Queue.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_Queue.o.d" -o ${OBJECTDIR}/ece118_base/ES_Queue.o ece118_base/ES_Queue.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_TattleTale.o: ece118_base/ES_TattleTale.c  .generated_files/flags/part_5/b44248a265b3b9bebedcaecc6f560c1df1f8ce63 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_TattleTale.o: ece118_base/ES_TattleTale.c  .generated_files/flags/part_5/3baf7ae6f1c9a30a38d8d49924fb91b222d51215 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_TattleTale.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_TattleTale.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_TattleTale.o.d" -o ${OBJECTDIR}/ece118_base/ES_TattleTale.o ece118_base/ES_TattleTale.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_TimerService.o: ece118_base/ES_TimerService.c  .generated_files/flags/part_5/47709c3e98f3c7cea193aeb8ee02e6831b5137ea .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_TimerService.o: ece118_base/ES_TimerService.c  .generated_files/flags/part_5/f9061bfa9a037c5f8f033ca0c1eb9abcd80da79f .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_TimerService.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_TimerService.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_TimerService.o.d" -o ${OBJECTDIR}/ece118_base/ES_TimerService.o ece118_base/ES_TimerService.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/RC_Servo.o: ece118_base/RC_Servo.c  .generated_files/flags/part_5/5d92ec396e64260db1b9f955100d0cec17f881e1 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/RC_Servo.o: ece118_base/RC_Servo.c  .generated_files/flags/part_5/346e6f1da3cc498c903b81e57fc0e6b7d2c9bb54 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/RC_Servo.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/RC_Servo.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/RC_Servo.o.d" -o ${OBJECTDIR}/ece118_base/RC_Servo.o ece118_base/RC_Servo.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_template/BetterEventChecker.o: ece118_template/BetterEventChecker.c  .generated_files/flags/part_5/df88ef12f6e705578e6ed2e69a5c1b3baa3b4a83 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_template/BetterEventChecker.o: ece118_template/BetterEventChecker.c  .generated_files/flags/part_5/3ea9724deec1f93710277c016cb5feba134545e2 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_template" 
 	@${RM} ${OBJECTDIR}/ece118_template/BetterEventChecker.o.d 
 	@${RM} ${OBJECTDIR}/ece118_template/BetterEventChecker.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_template/BetterEventChecker.o.d" -o ${OBJECTDIR}/ece118_template/BetterEventChecker.o ece118_template/BetterEventChecker.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_template/SimpleService.o: ece118_template/SimpleService.c  .generated_files/flags/part_5/52f8fae578a04ba72e491fb5103783fe6ade8482 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_template/SimpleService.o: ece118_template/SimpleService.c  .generated_files/flags/part_5/39229bbc21a242de843e8f58326c770b6486e45b .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_template" 
 	@${RM} ${OBJECTDIR}/ece118_template/SimpleService.o.d 
 	@${RM} ${OBJECTDIR}/ece118_template/SimpleService.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_template/SimpleService.o.d" -o ${OBJECTDIR}/ece118_template/SimpleService.o ece118_template/SimpleService.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
 else
-${OBJECTDIR}/main.o: main.c  .generated_files/flags/part_5/a0cc1692f566b47c24a14efce70c4712250a5af6 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/main.o: main.c  .generated_files/flags/part_5/56ffe900644c934db24600a6208cb961438ef95e .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/BOARD.o: ece118_base/BOARD.c  .generated_files/flags/part_5/4a242225e28238125d90ae2db3adb13eff589f56 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/BOARD.o: ece118_base/BOARD.c  .generated_files/flags/part_5/ddd2deae44c6d2db3fcae8b76ba973f4b3c9da0d .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/BOARD.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/BOARD.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/BOARD.o.d" -o ${OBJECTDIR}/ece118_base/BOARD.o ece118_base/BOARD.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/AD.o: ece118_base/AD.c  .generated_files/flags/part_5/6d1b290b32791e5fa34f31de61bca0eebda803e3 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/AD.o: ece118_base/AD.c  .generated_files/flags/part_5/19df458472a91f39fc9e3fa1126d5944952a1d48 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/AD.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/AD.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/AD.o.d" -o ${OBJECTDIR}/ece118_base/AD.o ece118_base/AD.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/serial.o: ece118_base/serial.c  .generated_files/flags/part_5/f03e90b6dbe484da24735bf36eaea63a3359ef3e .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/serial.o: ece118_base/serial.c  .generated_files/flags/part_5/8314b3f47273cdf4c35bb3f74bf83fde1f802f13 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/serial.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/serial.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/serial.o.d" -o ${OBJECTDIR}/ece118_base/serial.o ece118_base/serial.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/roach.o: ece118_base/roach.c  .generated_files/flags/part_5/9c159eed986d2270ae9ed85d4ff1f13a67683903 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/roach.o: ece118_base/roach.c  .generated_files/flags/part_5/1ae3aa016c5a64486b36dd9362e8953b3feb1c08 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/roach.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/roach.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/roach.o.d" -o ${OBJECTDIR}/ece118_base/roach.o ece118_base/roach.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/pwm.o: ece118_base/pwm.c  .generated_files/flags/part_5/3274cff84b71c0bb1d0ffcedbad46468a6835e16 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/pwm.o: ece118_base/pwm.c  .generated_files/flags/part_5/a6872403c17d3e8121e34ff76689a7beb2b7e0f .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/pwm.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/pwm.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/pwm.o.d" -o ${OBJECTDIR}/ece118_base/pwm.o ece118_base/pwm.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_template/SimpleEventChecker.o: ece118_template/SimpleEventChecker.c  .generated_files/flags/part_5/e0a1989c0dbcd7879cbc231ed0de5d6c706d4bc9 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_template/SimpleEventChecker.o: ece118_template/SimpleEventChecker.c  .generated_files/flags/part_5/2cb9e70aafc965c62fca006ac99bff318cefd63c .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_template" 
 	@${RM} ${OBJECTDIR}/ece118_template/SimpleEventChecker.o.d 
 	@${RM} ${OBJECTDIR}/ece118_template/SimpleEventChecker.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_template/SimpleEventChecker.o.d" -o ${OBJECTDIR}/ece118_template/SimpleEventChecker.o ece118_template/SimpleEventChecker.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_Framework.o: ece118_base/ES_Framework.c  .generated_files/flags/part_5/62a3c7e3c0b37ed92f0314f4d5eafb03c2d61f2b .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_Framework.o: ece118_base/ES_Framework.c  .generated_files/flags/part_5/3524449a558a8998481d6c3e2abc320167569aea .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Framework.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Framework.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_Framework.o.d" -o ${OBJECTDIR}/ece118_base/ES_Framework.o ece118_base/ES_Framework.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_Timers.o: ece118_base/ES_Timers.c  .generated_files/flags/part_5/291c96481a4b2e686f11fe5ecf4aed7186bbebc7 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_Timers.o: ece118_base/ES_Timers.c  .generated_files/flags/part_5/27cd941a61b09ca122a71b6e31db4535822538b9 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Timers.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Timers.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_Timers.o.d" -o ${OBJECTDIR}/ece118_base/ES_Timers.o ece118_base/ES_Timers.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_CheckEvents.o: ece118_base/ES_CheckEvents.c  .generated_files/flags/part_5/779f48a4b4d331c3e68446ad13b3005a9bd7c2cf .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_CheckEvents.o: ece118_base/ES_CheckEvents.c  .generated_files/flags/part_5/f555d1beaa6352972a301c9ddba17b69ec4c6701 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_CheckEvents.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_CheckEvents.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_CheckEvents.o.d" -o ${OBJECTDIR}/ece118_base/ES_CheckEvents.o ece118_base/ES_CheckEvents.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_KeyboardInput.o: ece118_base/ES_KeyboardInput.c  .generated_files/flags/part_5/3b46931ecac3ee0536d58fafef7eda9b42af2759 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_KeyboardInput.o: ece118_base/ES_KeyboardInput.c  .generated_files/flags/part_5/f98d8f21a3edfffb64d5faededff825aac41a567 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_KeyboardInput.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_KeyboardInput.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_KeyboardInput.o.d" -o ${OBJECTDIR}/ece118_base/ES_KeyboardInput.o ece118_base/ES_KeyboardInput.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_LookupTables.o: ece118_base/ES_LookupTables.c  .generated_files/flags/part_5/3e1062a1b5d6fbd54c8ddb53b60a0775bec5f692 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_LookupTables.o: ece118_base/ES_LookupTables.c  .generated_files/flags/part_5/19f06005fead9c2054513cf597e76782eb1362de .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_LookupTables.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_LookupTables.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_LookupTables.o.d" -o ${OBJECTDIR}/ece118_base/ES_LookupTables.o ece118_base/ES_LookupTables.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_PostList.o: ece118_base/ES_PostList.c  .generated_files/flags/part_5/92d675ac445230dff8b19392a08657c25e8d8a05 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_PostList.o: ece118_base/ES_PostList.c  .generated_files/flags/part_5/894c95b3cb883e6ad96f1022cb953d09526516b4 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_PostList.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_PostList.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_PostList.o.d" -o ${OBJECTDIR}/ece118_base/ES_PostList.o ece118_base/ES_PostList.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_Queue.o: ece118_base/ES_Queue.c  .generated_files/flags/part_5/669530b81ade4be5138d130307151de3cef9f50b .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_Queue.o: ece118_base/ES_Queue.c  .generated_files/flags/part_5/a52804c6c8d74ff2defacb2e42b5cce1c0372f7 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Queue.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_Queue.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_Queue.o.d" -o ${OBJECTDIR}/ece118_base/ES_Queue.o ece118_base/ES_Queue.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_TattleTale.o: ece118_base/ES_TattleTale.c  .generated_files/flags/part_5/2a17c2c29d48bff90530d960390d8131f88fba54 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_TattleTale.o: ece118_base/ES_TattleTale.c  .generated_files/flags/part_5/339a04c013e4ba4588d3df75155b1952f23f5569 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_TattleTale.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_TattleTale.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_TattleTale.o.d" -o ${OBJECTDIR}/ece118_base/ES_TattleTale.o ece118_base/ES_TattleTale.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/ES_TimerService.o: ece118_base/ES_TimerService.c  .generated_files/flags/part_5/d6e4fc8e5352bdc75608a8e946048152b3aca8d5 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/ES_TimerService.o: ece118_base/ES_TimerService.c  .generated_files/flags/part_5/bd055419f1a14973b5fbcb5d4e3a320dcc77504e .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_TimerService.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/ES_TimerService.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/ES_TimerService.o.d" -o ${OBJECTDIR}/ece118_base/ES_TimerService.o ece118_base/ES_TimerService.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_base/RC_Servo.o: ece118_base/RC_Servo.c  .generated_files/flags/part_5/45435fe7ffeb0ef813aecf775f1f53ace243b230 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_base/RC_Servo.o: ece118_base/RC_Servo.c  .generated_files/flags/part_5/284b758da039ef2555f888c2d64fd55fbe74e3ba .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_base" 
 	@${RM} ${OBJECTDIR}/ece118_base/RC_Servo.o.d 
 	@${RM} ${OBJECTDIR}/ece118_base/RC_Servo.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_base/RC_Servo.o.d" -o ${OBJECTDIR}/ece118_base/RC_Servo.o ece118_base/RC_Servo.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_template/BetterEventChecker.o: ece118_template/BetterEventChecker.c  .generated_files/flags/part_5/b9dc191e70d453d2a3b42e754c8be1f7ebff28b .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_template/BetterEventChecker.o: ece118_template/BetterEventChecker.c  .generated_files/flags/part_5/b2cf81497bb59a9fe0b641c4e59d28620d9b9aef .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_template" 
 	@${RM} ${OBJECTDIR}/ece118_template/BetterEventChecker.o.d 
 	@${RM} ${OBJECTDIR}/ece118_template/BetterEventChecker.o 
 	${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION)  -fno-common -DSIMPLE_EVENTCHECKER_TEST -I"ece118_base" -I"ece118_template" -MP -MMD -MF "${OBJECTDIR}/ece118_template/BetterEventChecker.o.d" -o ${OBJECTDIR}/ece118_template/BetterEventChecker.o ece118_template/BetterEventChecker.c    -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -mdfp="${DFP_DIR}"  
 	
-${OBJECTDIR}/ece118_template/SimpleService.o: ece118_template/SimpleService.c  .generated_files/flags/part_5/eed1ea667274098ad17bdda07ea33bef2728897b .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/ece118_template/SimpleService.o: ece118_template/SimpleService.c  .generated_files/flags/part_5/8e6d6ee5383eb6cecf13ad4fe49f224a12acf7b9 .generated_files/flags/part_5/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/ece118_template" 
 	@${RM} ${OBJECTDIR}/ece118_template/SimpleService.o.d 
 	@${RM} ${OBJECTDIR}/ece118_template/SimpleService.o 
@@ -349,7 +349,7 @@ else
 ${DISTDIR}/Lab0.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} ${DISTDIR} 
 	${MP_CC} $(MP_EXTRA_LD_PRE)  -mprocessor=$(MP_PROCESSOR_OPTION)  -o ${DISTDIR}/Lab0.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}          -DXPRJ_part_5=$(CND_CONF)    $(COMPARISON_BUILD)  -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--no-code-in-dinit,--no-dinit-in-serial-mem,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--memorysummary,${DISTDIR}/memoryfile.xml -mdfp="${DFP_DIR}"
-	${MP_CC_DIR}\\xc32-bin2hex ${DISTDIR}/Lab0.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} 
+	${MP_CC_DIR}/xc32-bin2hex ${DISTDIR}/Lab0.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} 
 endif
 
 
