@@ -14,8 +14,8 @@
  * Updated on 13/Nov/2013
  */
 
-#ifndef SIMPLESERVICE_H  // <- This should be changed to your own guard on both
-#define SIMPLESERVICE_H  //    of these lines
+#ifndef SIMPLE_SERVICE_H  // <- This should be changed to your own guard on both
+#define SIMPLE_SERVICE_H  //    of these lines
 
 
 /*******************************************************************************
@@ -48,8 +48,7 @@
  *        queue, which will be handled inside RunSimpleService function. Remember
  *        to rename this to something appropriate.
  *        Returns TRUE if successful, FALSE otherwise
- * @author J. Edward Carryer, 2011.10.23 19:25 */
-uint8_t InitLightSensorService(uint8_t Priority);
+ * @author J. Edward Carryer, 2011.10.23 19:25 */\
 
 uint8_t InitBumperService(uint8_t Priority);
 
@@ -62,7 +61,6 @@ uint8_t InitBumperService(uint8_t Priority);
  *        be posted to. Remember to rename to something appropriate.
  *        Returns TRUE if successful, FALSE otherwise
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-uint8_t PostLightSensorService(ES_Event ThisEvent);
 
 uint8_t PostBumperService(ES_Event ThisEvent);
 
@@ -75,7 +73,6 @@ uint8_t PostBumperService(ES_Event ThisEvent);
  * @note Remember to rename to something appropriate.
  *       Returns ES_NO_EVENT if the event have been "consumed." 
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-ES_Event RunLightSensorService(ES_Event ThisEvent);
 ES_Event RunBumperService(ES_Event ThisEvent);
 
 

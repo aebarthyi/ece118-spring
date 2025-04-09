@@ -49,8 +49,14 @@ typedef enum {
 	/* User-defined events end here */
     LIGHT_SENSOR_DARK,
     LIGHT_SENSOR_LIGHT,
-    BUMPERS_BUMPED,
-    BUMPERS_UNBUMPED,
+    FRONT_LEFT_BUMPER_BUMPED,
+    FRONT_LEFT_BUMPER_UNBUMPED,
+    FRONT_RIGHT_BUMPER_BUMPED,
+    FRONT_RIGHT_BUMPER_UNBUMPED,
+    REAR_LEFT_BUMPER_BUMPED,
+    REAR_LEFT_BUMPER_UNBUMPED,
+    REAR_RIGHT_BUMPER_BUMPED,
+    REAR_RIGHT_BUMPER_UNBUMPED,
     NUMBEROFEVENTS,
 } ES_EventTyp_t;
 
@@ -69,8 +75,14 @@ static const char *EventNames[] = {
 	"BATTERY_DISCONNECTED",
     "LIGHT_SENSOR_DARK",
     "LIGHT_SENSOR_LIGHT",
-    "BUMPERS_BUMPED",
-    "BUMPERS_UNBUMPED",
+    "FRONT_LEFT_BUMPER_BUMPED",
+    "FRONT_LEFT_BUMPER_UNBUMPED",
+    "FRONT_RIGHT_BUMPER_BUMPED",
+    "FRONT_RIGHT_BUMPER_UNBUMPED",
+    "REAR_LEFT_BUMPER_BUMPED",
+    "REAR_LEFT_BUMPER_UNBUMPED",
+    "REAR_RIGHT_BUMPER_BUMPED",
+    "REAR_RIGHT_BUMPER_UNBUMPED",
 	"NUMBEROFEVENTS",
 };
 
@@ -83,7 +95,7 @@ static const char *EventNames[] = {
 
 /****************************************************************************/
 // This is the list of event checking functions
-#define EVENT_CHECK_LIST  SimpleCheckLightSensor, SimpleCheckBumpers
+#define EVENT_CHECK_LIST  SimpleCheckLightSensor, CheckFrontRightBumper, CheckFrontLeftBumper, CheckRearRightBumper, CheckRearLeftBumper
 
 /****************************************************************************/
 // These are the definitions for the post functions to be executed when the

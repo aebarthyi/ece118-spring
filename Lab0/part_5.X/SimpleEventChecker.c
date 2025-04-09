@@ -110,26 +110,110 @@ uint8_t SimpleCheckLightSensor(void) {
     return (returnVal);
 }
 
-uint8_t SimpleCheckBumpers(void) {
-    static ES_EventTyp_t lastEvent = BUMPERS_UNBUMPED;
+uint8_t CheckFrontRightBumper(void) {
+    static ES_EventTyp_t lastEvent = FRONT_RIGHT_BUMPER_UNBUMPED;
+    static unsigned char lastBumperState = 0;
     ES_EventTyp_t curEvent;
     ES_Event thisEvent;
     uint8_t returnVal = FALSE;
     unsigned char bumperState = Roach_ReadBumpers();
     
-    if((bumperState & 0x1) | (bumperState & 0x2) | (bumperState & 0x4) | (bumperState & 0x8))
-        curEvent = BUMPERS_BUMPED;
+    if(bumperState & 0x2)
+        curEvent = FRONT_RIGHT_BUMPER_BUMPED;
     else
-        curEvent = BUMPERS_UNBUMPED;
+        curEvent = FRONT_RIGHT_BUMPER_UNBUMPED;
     
     if (curEvent != lastEvent) { // check for change from last time
         thisEvent.EventType = curEvent;
         thisEvent.EventParam = bumperState;
         returnVal = TRUE;
         lastEvent = curEvent; // update history
-#ifdef SIMPLE_EVENTCHECKER_TEST
-        SaveEvent(thisEvent);
-#endif  
+        lastBumperState = bumperState;
+        
+        #ifdef SIMPLE_EVENTCHECKER_TEST
+            SaveEvent(thisEvent);
+        #endif
+    }
+    return (returnVal);
+}
+
+uint8_t CheckFrontLeftBumper(void) {
+    static ES_EventTyp_t lastEvent = FRONT_LEFT_BUMPER_UNBUMPED;
+    static unsigned char lastBumperState = 0;
+    ES_EventTyp_t curEvent;
+    ES_Event thisEvent;
+    uint8_t returnVal = FALSE;
+    unsigned char bumperState = Roach_ReadBumpers();
+    
+    if(bumperState & 0x1)
+        curEvent = FRONT_LEFT_BUMPER_BUMPED;
+    else
+        curEvent = FRONT_LEFT_BUMPER_UNBUMPED;
+    
+    if (curEvent != lastEvent) { // check for change from last time
+        thisEvent.EventType = curEvent;
+        thisEvent.EventParam = bumperState;
+        returnVal = TRUE;
+        lastEvent = curEvent; // update history
+        lastBumperState = bumperState;
+        
+        #ifdef SIMPLE_EVENTCHECKER_TEST
+            SaveEvent(thisEvent);
+        #endif
+    }
+    return (returnVal);
+}
+
+uint8_t CheckRearRightBumper(void) {
+    static ES_EventTyp_t lastEvent = REAR_RIGHT_BUMPER_UNBUMPED;
+    static unsigned char lastBumperState = 0;
+    ES_EventTyp_t curEvent;
+    ES_Event thisEvent;
+    uint8_t returnVal = FALSE;
+    unsigned char bumperState = Roach_ReadBumpers();
+    
+    if(bumperState & 0x8)
+        curEvent = REAR_RIGHT_BUMPER_BUMPED;
+    else
+        curEvent = REAR_RIGHT_BUMPER_UNBUMPED;
+    
+    if (curEvent != lastEvent) { // check for change from last time
+        thisEvent.EventType = curEvent;
+        thisEvent.EventParam = bumperState;
+        returnVal = TRUE;
+        lastEvent = curEvent; // update history
+        lastBumperState = bumperState;
+        
+        #ifdef SIMPLE_EVENTCHECKER_TEST
+            SaveEvent(thisEvent);
+        #endif
+    }
+    return (returnVal);
+}
+
+uint8_t CheckRearLeftBumper(void) {
+    static ES_EventTyp_t lastEvent = REAR_LEFT_BUMPER_UNBUMPED;
+    static unsigned char lastBumperState = 0;
+    ES_EventTyp_t curEvent;
+    ES_Event thisEvent;
+    uint8_t returnVal = FALSE;
+    unsigned char bumperState = Roach_ReadBumpers();
+    
+    if(bumperState & 0x4)
+        curEvent = REAR_LEFT_BUMPER_BUMPED;
+    else
+        curEvent = REAR_LEFT_BUMPER_UNBUMPED;
+    
+    if (curEvent != lastEvent) { // check for change from last time
+        thisEvent.EventType = curEvent;
+        thisEvent.EventParam = bumperState;
+        returnVal = TRUE;
+        lastEvent = curEvent; // update history
+        lastBumperState = bumperState;
+        
+        #ifdef SIMPLE_EVENTCHECKER_TEST
+            SaveEvent(thisEvent);
+        #endif
     }
     return (returnVal);
 }

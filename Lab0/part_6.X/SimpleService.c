@@ -23,6 +23,7 @@
 #include "ES_Configure.h"
 #include "ES_Framework.h"
 #include "SimpleService.h"
+#include "BetterEventChecker.h"
 #include <stdio.h>
 #include <roach.h>
 
@@ -59,8 +60,7 @@ static uint8_t MyPriority;
  *        to rename this to something appropriate.
  *        Returns TRUE if successful, FALSE otherwise
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-uint8_t InitLightSensorService(uint8_t Priority)
-{
+uint8_t InitLightSensorService(uint8_t Priority){
     ES_Event ThisEvent;
 
     MyPriority = Priority;
@@ -106,12 +106,13 @@ uint8_t InitBumperService(uint8_t Priority)
  *        be posted to. Remember to rename to something appropriate.
  *        Returns TRUE if successful, FALSE otherwise
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-uint8_t PostLightSensorService(ES_Event ThisEvent)
+
+uint8_t PostBumperService(ES_Event ThisEvent)
 {
     return ES_PostToService(1, ThisEvent);
 }
 
-uint8_t PostBumperService(ES_Event ThisEvent)
+uint8_t PostLightSensorService(ES_Event ThisEvent)
 {
     return ES_PostToService(2, ThisEvent);
 }
@@ -124,19 +125,13 @@ uint8_t PostBumperService(ES_Event ThisEvent)
  * @note Remember to rename to something appropriate.
  *       Returns ES_NO_EVENT if the event have been "consumed." 
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-ES_Event RunLightSensorService(ES_Event ThisEvent)
+
+
+ES_Event RunBumperService(ES_Event ThisEvent)
 {
     ES_Event ReturnEvent;
     ReturnEvent.EventType = ES_NO_EVENT; // assume no errors
-
-    /********************************************
-     in here you write your service code
-     *******************************************/
-    static ES_EventTyp_t lastEvent = LIGHT_SENSOR_DARK;
-    ES_EventTyp_t curEvent;
-    ES_Event thisEvent;
-    unsigned int scaledValue = Roach_LightLevel();
-
+    
     switch (ThisEvent.EventType) {
     case ES_INIT:
         // No hardware initialization or single time setups, those
@@ -146,42 +141,24 @@ ES_Event RunLightSensorService(ES_Event ThisEvent)
         break;
         
     case ES_TIMEOUT:
-        if (scaledValue > LIGHT_HIGH_THRESHOLD) { // is battery connected?
-            curEvent = LIGHT_SENSOR_DARK;
-        } else if(scaledValue < LIGHT_LOW_THRESHOLD){
-            curEvent = LIGHT_SENSOR_LIGHT;
-        }
-        if (curEvent != lastEvent) { // check for change from last time
-            ReturnEvent.EventType = curEvent;
-            ReturnEvent.EventParam = scaledValue;
-            lastEvent = curEvent; // update history
-            PostLightSensorService(ReturnEvent);
-        }
+        CheckFrontRightBumper();
+        CheckFrontLeftBumper();
+        CheckRearRightBumper();
+        CheckRearLeftBumper();
+#ifndef SIMPLESERVICE_TEST           // keep this as is for test harness
+        PostBumperService(ReturnEvent); // Change it to your target service's post function
+#else
+        PostTemplateService(ReturnEvent);
+#endif   
         break;
-    
-    case LIGHT_SENSOR_DARK:
-        printf("\nlight sensor is in the dark");
-        break;
-    
-    case LIGHT_SENSOR_LIGHT:
-        printf("\nlight sensor is in the light");
-        break;
-        
-#ifdef SIMPLESERVICE_TEST     // keep this as is for test harness      
-    default:
-        printf("\r\nEvent: %s\tParam: 0x%X",
-                EventNames[ThisEvent.EventType], ThisEvent.EventParam);
-        break;
-#endif
     }
     return ReturnEvent;
 }
 
-ES_Event RunBumperService(ES_Event ThisEvent)
-{
+ES_Event RunLightSensorService(ES_Event ThisEvent){
     ES_Event ReturnEvent;
     ReturnEvent.EventType = ES_NO_EVENT; // assume no errors
-
+    
     return ReturnEvent;
 }
 

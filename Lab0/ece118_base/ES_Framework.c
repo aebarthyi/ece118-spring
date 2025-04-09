@@ -42,6 +42,9 @@ typedef ES_Event RunFunc_t(ES_Event ThisEvent);
 typedef InitFunc_t * pInitFunc;
 typedef RunFunc_t * pRunFunc;
 
+#define DELAY(x)    for (wait = 0; wait <= x; wait++) {asm("nop");}
+#define A_BIT       18300
+
 #define NULL_INIT_FUNC ((pInitFunc)0)
 
 typedef struct {
@@ -230,11 +233,12 @@ ES_Return_t ES_Run(void) {
     static ES_Event ThisEvent;
     uint8_t CurService;
     uint8_t CurServiceMask;
-
+    unsigned int wait;
     while (1) { // stay here unless we detect an error condition
 
         // loop through the list executing the run functions for services
         // with a non-empty queue
+        DELAY(A_BIT);
         while (Ready != 0) {
             //if (IsTransmitEmpty()) {
                  //printf("handling queues: %X\r\n", Ready);
