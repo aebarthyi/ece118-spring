@@ -1,18 +1,17 @@
 /*
- * File: TemplateFSM.c
+ * File: TemplateSubHSM.c
  * Author: J. Edward Carryer
  * Modified: Gabriel H Elkaim
  *
- * Template file to set up a Flat State Machine to work with the Events and Services
- * Frameword (ES_Framework) on the Uno32 for the CMPE-118/L class. Note that this file
- * will need to be modified to fit your exact needs, and most of the names will have
- * to be changed to match your code.
+ * Template file to set up a Heirarchical State Machine to work with the Events and
+ * Services Framework (ES_Framework) on the Uno32 for the CMPE-118/L class. Note that
+ * this file will need to be modified to fit your exact needs, and most of the names
+ * will have to be changed to match your code.
+ *
+ * There is for a substate machine. Make sure it has a unique name
  *
  * This is provided as an example and a good place to start.
  *
- *Generally you will just be modifying the statenames and the run function
- *However make sure you do a find and replace to convert every instance of
- *  "Template" to your current state machine's name
  * History
  * When           Who     What/Why
  * -------------- ---     --------
@@ -30,46 +29,41 @@
 
 #include "ES_Configure.h"
 #include "ES_Framework.h"
-
-#include "TemplateFSM.h"
-#include <BOARD.h>
-//Uncomment these for the Roaches
-//#include "roach.h"
-//#include "RoachFrameworkEvents.h"
-#include <stdio.h>
-
+#include "BOARD.h"
+#include "TemplateHSM.h"
+#include "TemplateSubHSM.h"
+#include "roach.h"
 
 /*******************************************************************************
  * MODULE #DEFINES                                                             *
  ******************************************************************************/
+typedef enum {
+    InitPSubState,
+    SubRunState,
+    SubDanceState,
+} TemplateSubHSMState_t;
+
+static const char *StateNames[] = {
+    "InitPSubState",
+    "SubRunState",
+    "SubDanceState",
+};
+
 
 
 /*******************************************************************************
  * PRIVATE FUNCTION PROTOTYPES                                                 *
  ******************************************************************************/
 /* Prototypes for private functions for this machine. They should be functions
-   relevant to the behavior of this state machine.*/
-
+   relevant to the behavior of this state machine */
 
 /*******************************************************************************
  * PRIVATE MODULE VARIABLES                                                            *
  ******************************************************************************/
-
 /* You will need MyPriority and the state variable; you may need others as well.
  * The type of state variable should match that of enum in header file. */
 
-typedef enum {
-    InitPState,
-    FirstState,
-} TemplateFSMState_t; // <- For Tattletale, keep the "State_t" on the end of the enum type name.
-
-static const char *StateNames[] = {
-	"InitPState",
-	"FirstState",
-};
-
-
-static TemplateFSMState_t CurrentState = InitPState; // <- change enum name to match ENUM
+static TemplateSubHSMState_t CurrentState = InitPSubState; // <- change name to match ENUM
 static uint8_t MyPriority;
 
 
@@ -78,7 +72,7 @@ static uint8_t MyPriority;
  ******************************************************************************/
 
 /**
- * @Function InitTemplateFSM(uint8_t Priority)
+ * @Function InitTemplateSubHSM(uint8_t Priority)
  * @param Priority - internal variable to track which event queue to use
  * @return TRUE or FALSE
  * @brief This will get called by the framework at the beginning of the code
@@ -87,54 +81,45 @@ static uint8_t MyPriority;
  *        to rename this to something appropriate.
  *        Returns TRUE if successful, FALSE otherwise
  * @author J. Edward Carryer, 2011.10.23 19:25 */
-uint8_t InitTemplateFSM(uint8_t Priority)
+uint8_t InitTemplateSubHSM(void)
 {
-    MyPriority = Priority;
-    // put us into the Initial PseudoState
-    CurrentState = InitPState;
-    // post the initial transition event
-    if (ES_PostToService(MyPriority, INIT_EVENT) == TRUE) {
+    ES_Event returnEvent;
+
+    CurrentState = InitPSubState;
+    returnEvent = RunTemplateSubHSM(INIT_EVENT);
+    if (returnEvent.EventType == ES_NO_EVENT) {
         return TRUE;
-    } else {
-        return FALSE;
     }
+    return FALSE;
 }
 
 /**
- * @Function PostTemplateFSM(ES_Event ThisEvent)
- * @param ThisEvent - the event (type and param) to be posted to queue
- * @return TRUE or FALSE
- * @brief This function is a wrapper to the queue posting function, and its name
- *        will be used inside ES_Configure to point to which queue events should
- *        be posted to. Remember to rename to something appropriate.
- *        Returns TRUE if successful, FALSE otherwise
- * @author J. Edward Carryer, 2011.10.23 19:25 */
-uint8_t PostTemplateFSM(ES_Event ThisEvent)
-{
-    return ES_PostToService(MyPriority, ThisEvent);
-}
-
-/**
- * @Function RunTemplateFSM(ES_Event ThisEvent)
+ * @Function RunTemplateSubHSM(ES_Event ThisEvent)
  * @param ThisEvent - the event (type and param) to be responded.
  * @return Event - return event (type and param), in general should be ES_NO_EVENT
- * @brief This function is where you implement the whole of the flat state machine,
- *        as this is called any time a new event is passed to the event queue. This
- *        function will be called recursively to implement the correct order for a
- *        state transition to be: exit current state -> enter next state using the
- *        ES_EXIT and ES_ENTRY events.
+ * @brief This function is where you implement the whole of the heirarchical state
+ *        machine, as this is called any time a new event is passed to the event
+ *        queue. This function will be called recursively to implement the correct
+ *        order for a state transition to be: exit current state -> enter next state
+ *        using the ES_EXIT and ES_ENTRY events.
  * @note Remember to rename to something appropriate.
- *       Returns ES_NO_EVENT if the event have been "consumed."
- * @author J. Edward Carryer, 2011.10.23 19:25 */
-ES_Event RunTemplateFSM(ES_Event ThisEvent)
+ *       The lower level state machines are run first, to see if the event is dealt
+ *       with there rather than at the current level. ES_EXIT and ES_ENTRY events are
+ *       not consumed as these need to pass pack to the higher level state machine.
+ * @author J. Edward Carryer, 2011.10.23 19:25
+ * @author Gabriel H Elkaim, 2011.10.23 19:25 */
+ES_Event RunTemplateSubHSM(ES_Event ThisEvent)
 {
+    static uint8_t zigs;
+    static int rightMotorSpeed;
+    static int leftMotorSpeed;
     uint8_t makeTransition = FALSE; // use to flag transition
-    TemplateFSMState_t nextState; // <- need to change enum type here
+    TemplateSubHSMState_t nextState; // <- change type to correct enum
 
     ES_Tattle(); // trace call stack
 
     switch (CurrentState) {
-    case InitPState: // If current state is initial Psedudo State
+    case InitPSubState: // If current state is initial Psedudo State
         if (ThisEvent.EventType == ES_INIT)// only respond to ES_Init
         {
             // this is where you would put any actions associated with the
@@ -142,24 +127,45 @@ ES_Event RunTemplateFSM(ES_Event ThisEvent)
             // initial state
 
             // now put the machine into the actual initial state
-            nextState = FirstState;
+            nextState = SubRunState;
             makeTransition = TRUE;
             ThisEvent.EventType = ES_NO_EVENT;
         }
         break;
-
-    case FirstState: // in the first state, replace this with appropriate state
+        
+    case SubRunState:
+        Roach_LeftMtrSpeed(100);
+        Roach_RightMtrSpeed(100);
+        if(ThisEvent.EventType == ES_ENTRY){
+            ES_Timer_InitTimer(1, 5000);
+        }
+        if(ThisEvent.EventType == ES_TIMEOUT){
+            nextState = SubDanceState;
+        }
         break;
+        
 
+    case SubDanceState: // in the first state, replace this with correct names
+        
+        if(ThisEvent.EventType == ES_ENTRY){
+            ES_Timer_InitTimer(1, 500);
+            Roach_LeftMtrSpeed(-100);
+            Roach_RightMtrSpeed(100);
+            zigs = 0;
+        }
+        break;
+        
     default: // all unhandled states fall into here
         break;
     } // end switch on Current State
+
     if (makeTransition == TRUE) { // making a state transition, send EXIT and ENTRY
         // recursively call the current state with an exit event
-        RunTemplateFSM(EXIT_EVENT);
+        RunTemplateSubHSM(EXIT_EVENT); // <- rename to your own Run function
         CurrentState = nextState;
-        RunTemplateFSM(ENTRY_EVENT);
+        RunTemplateSubHSM(ENTRY_EVENT); // <- rename to your own Run function
     }
+
     ES_Tail(); // trace call stack end
     return ThisEvent;
 }
@@ -168,3 +174,4 @@ ES_Event RunTemplateFSM(ES_Event ThisEvent)
 /*******************************************************************************
  * PRIVATE FUNCTIONS                                                           *
  ******************************************************************************/
+

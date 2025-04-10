@@ -79,19 +79,27 @@ static const char *EventNames[] = {
 
 /****************************************************************************/
 // This are the name of the Event checking function header file.
+#ifdef SIMPLE_EVENTCHECKER_TEST
+#define EVENT_CHECK_HEADER "SimpleEventChecker.h"
+#else
 #define EVENT_CHECK_HEADER "BetterEventChecker.h"
+#endif
 
 /****************************************************************************/
 // This is the list of event checking functions
-#define EVENT_CHECK_LIST  BetterCheckLightSensor, CheckFrontRightBumper, CheckFrontLeftBumper, CheckRearRightBumper, CheckRearLeftBumper
+#ifdef SIMPLE_EVENTCHECKER_TEST
+#define EVENT_CHECK_LIST  SimpleCheckLightSensor, SimpleCheckBumpers
+#else
+#define EVENT_CHECK_LIST  BetterCheckLightSensor, CheckFrontLeftBumper, CheckFrontRightBumper, CheckRearLeftBumper, CheckRearRightBumper
+#endif
 
 /****************************************************************************/
 // These are the definitions for the post functions to be executed when the
 // corresponding timer expires. All 16 must be defined. If you are not using
 // a timers, then you can use TIMER_UNUSED
 #define TIMER_UNUSED ((pPostFunc)0)
-#define TIMER0_RESP_FUNC PostBumperService // Replace TIMER_UNUSED with e.g.,PostTemplateService 
-#define TIMER1_RESP_FUNC TIMER_UNUSED
+#define TIMER0_RESP_FUNC TIMER_UNUSED // Replace TIMER_UNUSED with e.g.,PostTemplateService 
+#define TIMER1_RESP_FUNC PostTemplateFSM
 #define TIMER2_RESP_FUNC TIMER_UNUSED
 #define TIMER3_RESP_FUNC TIMER_UNUSED
 #define TIMER4_RESP_FUNC TIMER_UNUSED
@@ -134,11 +142,11 @@ static const char *EventNames[] = {
 // services are added in numeric sequence (1,2,3,...) with increasing 
 // priorities
 // the header file with the public fuction prototypes
-#define SERV_0_HEADER "ES_KeyboardInput.h"
+#define SERV_0_HEADER "TemplateFSM.h"
 // the name of the Init function
-#define SERV_0_INIT InitKeyboardInput
+#define SERV_0_INIT InitTemplateFSM
 // the name of the run function
-#define SERV_0_RUN RunKeyboardInput
+#define SERV_0_RUN RunTemplateFSM
 // How big should this service's Queue be?
 #define SERV_0_QUEUE_SIZE 9
 
@@ -148,9 +156,9 @@ static const char *EventNames[] = {
 // the header file with the public fuction prototypes
 #define SERV_1_HEADER "SimpleService.h"
 // the name of the Init function
-#define SERV_1_INIT InitBumperService
+#define SERV_1_INIT InitLightSensorService
 // the name of the run function
-#define SERV_1_RUN RunBumperService
+#define SERV_1_RUN RunLightSensorService
 // How big should this services Queue be?
 #define SERV_1_QUEUE_SIZE 3
 #endif

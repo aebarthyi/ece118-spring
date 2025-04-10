@@ -98,7 +98,7 @@ static const char *EventNames[] = {
 // corresponding timer expires. All 16 must be defined. If you are not using
 // a timers, then you can use TIMER_UNUSED
 #define TIMER_UNUSED ((pPostFunc)0)
-#define TIMER0_RESP_FUNC TIMER_UNUSED // Replace TIMER_UNUSED with e.g.,PostTemplateService 
+#define TIMER0_RESP_FUNC PostTemplateFSM // Replace TIMER_UNUSED with e.g.,PostTemplateService 
 #define TIMER1_RESP_FUNC TIMER_UNUSED
 #define TIMER2_RESP_FUNC TIMER_UNUSED
 #define TIMER3_RESP_FUNC TIMER_UNUSED
@@ -134,7 +134,7 @@ static const char *EventNames[] = {
 /****************************************************************************/
 // This macro determines that nuber of services that are *actually* used in
 // a particular application. It will vary in value from 1 to MAX_NUM_SERVICES
-#define NUM_SERVICES 3
+#define NUM_SERVICES 1
 
 /****************************************************************************/
 // These are the definitions for Service 0, the lowest priority service
@@ -142,11 +142,11 @@ static const char *EventNames[] = {
 // services are added in numeric sequence (1,2,3,...) with increasing 
 // priorities
 // the header file with the public fuction prototypes
-#define SERV_0_HEADER "ES_KeyboardInput.h"
+#define SERV_0_HEADER "TemplateFSM.h"
 // the name of the Init function
-#define SERV_0_INIT InitKeyboardInput
+#define SERV_0_INIT InitTemplateFSM
 // the name of the run function
-#define SERV_0_RUN RunKeyboardInput
+#define SERV_0_RUN RunTemplateFSM
 // How big should this service's Queue be?
 #define SERV_0_QUEUE_SIZE 9
 

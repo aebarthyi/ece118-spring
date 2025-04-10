@@ -5,7 +5,8 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>BetterEventChecker.h</itemPath>
-      <itemPath>ES_Configure.h</itemPath>
+      <itemPath>TemplateHSM.h</itemPath>
+      <itemPath>TemplateSubHSM.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -19,25 +20,25 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>AD.c</itemPath>
       <itemPath>BetterEventChecker.c</itemPath>
+      <itemPath>BOARD.c</itemPath>
+      <itemPath>ES_CheckEvents.c</itemPath>
+      <itemPath>ES_Framework.c</itemPath>
+      <itemPath>ES_Queue.c</itemPath>
+      <itemPath>ES_TattleTale.c</itemPath>
+      <itemPath>ES_Timers.c</itemPath>
       <itemPath>main.c</itemPath>
-      <itemPath>ece118_base/AD.c</itemPath>
-      <itemPath>ece118_base/BOARD.c</itemPath>
-      <itemPath>ece118_base/ES_CheckEvents.c</itemPath>
-      <itemPath>ece118_base/ES_Framework.c</itemPath>
-      <itemPath>ece118_base/ES_KeyboardInput.c</itemPath>
-      <itemPath>ece118_base/ES_Queue.c</itemPath>
-      <itemPath>ece118_base/ES_TattleTale.c</itemPath>
-      <itemPath>ece118_base/ES_Timers.c</itemPath>
-      <itemPath>ece118_base/pwm.c</itemPath>
-      <itemPath>ece118_base/roach.c</itemPath>
-      <itemPath>ece118_base/serial.c</itemPath>
+      <itemPath>pwm.c</itemPath>
+      <itemPath>roach.c</itemPath>
+      <itemPath>serial.c</itemPath>
+      <itemPath>TemplateHSM.c</itemPath>
+      <itemPath>TemplateSubHSM.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
-    <Elem>../ece118_base</Elem>
-    <Elem>../ece118_template</Elem>
-    <Elem>ece118_base</Elem>
+    <Elem>../part_7.X/ece118_template</Elem>
+    <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -47,7 +48,7 @@
         <targetDevice>PIC32MX320F128H</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>noID</platformTool>
+        <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>4.60</languageToolchainVersion>
         <platform>3</platform>
@@ -272,7 +273,8 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="1d000000-1d01ffff"/>
+        <property key="memories.programmemory.ranges"
+                  value="${memories.programmemory.ranges.default}"/>
         <property key="poweroptions.powerenable" value="false"/>
         <property key="programmertogo.imagename" value=""/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
@@ -282,7 +284,8 @@
         <property key="programoptions.preservedataflash.ranges"
                   value="${programoptions.preservedataflash.ranges}"/>
         <property key="programoptions.preserveeeprom" value="false"/>
-        <property key="programoptions.preserveeeprom.ranges" value=""/>
+        <property key="programoptions.preserveeeprom.ranges"
+                  value="${memories.eedata.default}"/>
         <property key="programoptions.preserveprogram.ranges" value=""/>
         <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveuserid" value="false"/>
@@ -347,7 +350,8 @@
         <property key="memories.instruction.ram.ranges"
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.ranges" value="1d000000-1d01ffff"/>
+        <property key="memories.programmemory.ranges"
+                  value="${memories.programmemory.ranges.default}"/>
         <property key="poweroptions.powerenable" value="false"/>
         <property key="programmertogo.imagename" value=""/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
@@ -357,7 +361,8 @@
         <property key="programoptions.preservedataflash.ranges"
                   value="${programoptions.preservedataflash.ranges}"/>
         <property key="programoptions.preserveeeprom" value="false"/>
-        <property key="programoptions.preserveeeprom.ranges" value=""/>
+        <property key="programoptions.preserveeeprom.ranges"
+                  value="${memories.eedata.default}"/>
         <property key="programoptions.preserveprogram.ranges" value=""/>
         <property key="programoptions.preserveprogramrange" value="false"/>
         <property key="programoptions.preserveuserid" value="false"/>

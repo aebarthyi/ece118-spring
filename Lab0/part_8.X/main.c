@@ -1,7 +1,7 @@
 #include <BOARD.h>
-#include <roach.h>
 #include <xc.h>
 #include <stdio.h>
+#include <roach.h>
 #include "ES_Configure.h"
 #include "ES_Framework.h"
 
@@ -10,7 +10,7 @@ void main(void)
     ES_Return_t ErrorType;
 
     BOARD_Init();
-
+    Roach_Init();
     printf("Starting ES Framework Template\r\n");
     printf("using the 2nd Generation Events & Services Framework\r\n");
 
