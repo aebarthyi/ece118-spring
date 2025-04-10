@@ -19,8 +19,8 @@
  * Modified on September 12, 2016, 7:59 PM
  */
 
-#ifndef SIMPLEEVENTCHECKER_H
-#define	SIMPLEEVENTCHECKER_H
+#ifndef BETTEREVENTCHECKER_H
+#define	BETTEREVENTCHECKER_H
 
 /*******************************************************************************
  * PUBLIC #INCLUDES                                                            *

@@ -27,7 +27,7 @@
  ******************************************************************************/
 
 #include "ES_Configure.h"
-#include "SimpleEventChecker.h"
+#include "BetterEventChecker.h"
 #include <ES_Events.h>
 #include "AD.h"
 #include <roach.h>

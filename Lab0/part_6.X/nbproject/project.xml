@@ -11,7 +11,7 @@
             <sourceRootList>
                 <sourceRootElem>../ece118_base</sourceRootElem>
                 <sourceRootElem>../ece118_template</sourceRootElem>
-                <sourceRootElem>ece118_base</sourceRootElem>
+                <sourceRootElem>.</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
