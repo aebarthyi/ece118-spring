@@ -98,8 +98,8 @@ static const char *EventNames[] = {
 // corresponding timer expires. All 16 must be defined. If you are not using
 // a timers, then you can use TIMER_UNUSED
 #define TIMER_UNUSED ((pPostFunc)0)
-#define TIMER0_RESP_FUNC TIMER_UNUSED // Replace TIMER_UNUSED with e.g.,PostTemplateService 
-#define TIMER1_RESP_FUNC PostTemplateHSM
+#define TIMER0_RESP_FUNC PostTemplateHSM // Replace TIMER_UNUSED with e.g.,PostTemplateService 
+#define TIMER1_RESP_FUNC TIMER_UNUSED
 #define TIMER2_RESP_FUNC TIMER_UNUSED
 #define TIMER3_RESP_FUNC TIMER_UNUSED
 #define TIMER4_RESP_FUNC TIMER_UNUSED

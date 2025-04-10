@@ -39,14 +39,18 @@
  ******************************************************************************/
 typedef enum {
     InitPSubState,
-    SubRunState,
-    SubDanceState,
+    IdleState,
+    MoveForward,
+    MoveBackward,
+    ExitState,
 } TemplateSubHSMState_t;
 
 static const char *StateNames[] = {
     "InitPSubState",
-    "SubRunState",
-    "SubDanceState",
+    "IdleState",
+    "MoveForward",
+    "MoveBackward",
+    "ExitState",
 };
 
 
@@ -110,7 +114,6 @@ uint8_t InitTemplateSubHSM(void)
  * @author Gabriel H Elkaim, 2011.10.23 19:25 */
 ES_Event RunTemplateSubHSM(ES_Event ThisEvent)
 {
-    static uint8_t zigs;
     static int rightMotorSpeed;
     static int leftMotorSpeed;
     uint8_t makeTransition = FALSE; // use to flag transition
@@ -127,31 +130,90 @@ ES_Event RunTemplateSubHSM(ES_Event ThisEvent)
             // initial state
 
             // now put the machine into the actual initial state
-            nextState = SubRunState;
+            nextState = IdleState;
             makeTransition = TRUE;
             ThisEvent.EventType = ES_NO_EVENT;
         }
         break;
         
-    case SubRunState:
-        Roach_LeftMtrSpeed(100);
-        Roach_RightMtrSpeed(100);
-        if(ThisEvent.EventType == ES_ENTRY){
-            ES_Timer_InitTimer(1, 5000);
-        }
-        if(ThisEvent.EventType == ES_TIMEOUT){
-            nextState = SubDanceState;
+    case IdleState:
+        Roach_LeftMtrSpeed(0);
+        Roach_RightMtrSpeed(0);
+        if(ThisEvent.EventType == BUMPERS_BUMPED){
+            uint8_t bumperMask = ThisEvent.EventParam;
+            // Check for front bumper activation: bits 3 (Front Right) or 2 (Front Left)
+            if ((bumperMask & 0x8) | (bumperMask & 0x4)) {
+                nextState = MoveBackward;
+                makeTransition = TRUE;
+                ThisEvent.EventType = ES_NO_EVENT;
+            }
+            else if ((bumperMask & 0x2) | (bumperMask & 0x1)) {
+                nextState = MoveForward;
+                makeTransition = TRUE;
+                ThisEvent.EventType = ES_NO_EVENT;
+            }
+        } else if(ThisEvent.EventType == LIGHT_SENSOR_LIGHT){
+            nextState = ExitState;
+            makeTransition = FALSE;
         }
         break;
         
 
-    case SubDanceState: // in the first state, replace this with correct names
+    case MoveForward: // in the first state, replace this with correct names
         
         if(ThisEvent.EventType == ES_ENTRY){
-            ES_Timer_InitTimer(1, 500);
-            Roach_LeftMtrSpeed(-100);
-            Roach_RightMtrSpeed(100);
-            zigs = 0;
+            ES_Timer_InitTimer(0, 1000);
+            Roach_LeftMtrSpeed(70);
+            Roach_RightMtrSpeed(70);
+        }
+        else if (ThisEvent.EventType == ES_TIMEOUT) {
+            // After timeout, return to Idle.
+            nextState = IdleState;
+            makeTransition = TRUE;
+            ThisEvent.EventType = ES_NO_EVENT;
+        }
+        else if (ThisEvent.EventType == BUMPERS_BUMPED) {
+            uint8_t bumperMask = ThisEvent.EventParam;
+            // If a front bumper is pressed while driving forward, switch to driving back.
+            if ((bumperMask & 0x8) | (bumperMask & 0x4)) {
+                nextState = MoveBackward;
+                makeTransition = TRUE;
+                ThisEvent.EventType = ES_NO_EVENT;
+            }
+        }
+        break;
+        
+    case MoveBackward: // in the first state, replace this with correct names
+        
+        if(ThisEvent.EventType == ES_ENTRY){
+            ES_Timer_InitTimer(0, 1000);
+            Roach_LeftMtrSpeed(-70);
+            Roach_RightMtrSpeed(-70);
+        }
+        else if (ThisEvent.EventType == ES_TIMEOUT) {
+            // After timeout, return to Idle.
+            nextState = IdleState;
+            makeTransition = TRUE;
+            ThisEvent.EventType = ES_NO_EVENT;
+        }
+        else if (ThisEvent.EventType == BUMPERS_BUMPED) {
+            uint8_t bumperMask = ThisEvent.EventParam;
+            // If a front bumper is pressed while driving forward, switch to driving back.
+            if ((bumperMask & 0x2) | (bumperMask & 0x1)) {
+                nextState = MoveForward;
+                makeTransition = TRUE;
+                ThisEvent.EventType = ES_NO_EVENT;
+            }
+        }
+        break;
+        
+    case ExitState:
+        if (ThisEvent.EventType == ES_ENTRY) {
+            // Any exit actions can be performed here before returning to Idle.
+            // For now, simply perform the transition.
+            nextState = IdleState;
+            makeTransition = TRUE;
+            ThisEvent.EventType = ES_NO_EVENT;
         }
         break;
         

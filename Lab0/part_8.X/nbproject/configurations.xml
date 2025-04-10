@@ -7,6 +7,8 @@
       <itemPath>BetterEventChecker.h</itemPath>
       <itemPath>TemplateHSM.h</itemPath>
       <itemPath>TemplateSubHSM.h</itemPath>
+      <itemPath>TemplateSubHSMM.h</itemPath>
+      <itemPath>ece118_base/ES_Configure.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -34,6 +36,7 @@
       <itemPath>serial.c</itemPath>
       <itemPath>TemplateHSM.c</itemPath>
       <itemPath>TemplateSubHSM.c</itemPath>
+      <itemPath>TemplateSubHSMM.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
