@@ -59,7 +59,10 @@
  * @modified Gabriel H Elkaim/Max Dunne, 2016.09.12 20:08 */
 uint8_t SimpleCheckLightSensor(void);
 
-uint8_t SimpleCheckBumpers(void);
+uint8_t CheckFrontRightBumper(void);
+uint8_t CheckFrontLeftBumper(void);
+uint8_t CheckRearRightBumper(void);
+uint8_t CheckRearLeftBumper(void);
 
 void PrintEvent(void);
 

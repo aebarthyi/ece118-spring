@@ -57,7 +57,7 @@ int main(void){
     printf("\r\n\tC: test the light bar");
     while (1) {
         // wait for key press
-        printf("\nEnter key:");
+        printf("\r\nEnter key:");
         while (1) {
             if (IsReceiveEmpty() == FALSE) {
                 keyInput = GetChar();
@@ -68,7 +68,7 @@ int main(void){
         switch (keyInput) {
 
             case 'w': // move roach forward
-                printf("\nMoving forward");
+                printf("\r\nMoving forward");
                 motorSpeedRight = 50;
                 motorSpeedLeft = 50;
                 Roach_LeftMtrSpeed(motorSpeedLeft);
@@ -79,7 +79,7 @@ int main(void){
                 break;
 
             case 's': // move roach backwards
-                printf("\nMoving backward");
+                printf("\r\nMoving backward");
                 motorSpeedRight = -50;
                 motorSpeedLeft = -50;
                 Roach_LeftMtrSpeed(motorSpeedLeft);
@@ -90,7 +90,7 @@ int main(void){
                 break;
 
             case 'd': // spin clockwise
-                printf("\nSpinning clockwise");
+                printf("\r\nSpinning clockwise");
                 motorSpeedRight = -50;
                 motorSpeedLeft = 50;
                 Roach_LeftMtrSpeed(motorSpeedLeft);
@@ -101,7 +101,7 @@ int main(void){
                 break;
 
             case 'a': // spin counterclockwise
-                printf("\nSpinning counterclockwise");
+                printf("\r\nSpinning counterclockwise");
                 motorSpeedRight = 50;
                 motorSpeedLeft = -50;
                 Roach_LeftMtrSpeed(motorSpeedLeft);
@@ -114,31 +114,31 @@ int main(void){
             case 'f': // output current bumper status
                 switch(Roach_ReadBumpers()){
                     case FRIGHT_BUMP_MASK: 
-                        printf("\nFront right bumper pushed in");
+                        printf("\r\nFront right bumper pushed in");
                         break;
                     case FLEFT_BUMP_MASK: 
-                        printf("\nFront left bumper pushed in");
+                        printf("\r\nFront left bumper pushed in");
                         break;
                     case RRIGHT_BUMP_MASK: 
-                        printf("\nRear right bumper pushed in");
+                        printf("\r\nRear right bumper pushed in");
                         break;
                     case RLEFT_BUMP_MASK: 
-                        printf("\nRear left bumper pushed in");
+                        printf("\r\nRear left bumper pushed in");
                         break;
                     case (FRIGHT_BUMP_MASK | FLEFT_BUMP_MASK): 
-                        printf("\nFront bumpers pushed in");
+                        printf("\r\nFront bumpers pushed in");
                         break;
                     case (RRIGHT_BUMP_MASK | RLEFT_BUMP_MASK): 
-                        printf("\nRear bumpers pushed in");
+                        printf("\r\nRear bumpers pushed in");
                         break;
                     case (FRIGHT_BUMP_MASK | RRIGHT_BUMP_MASK): 
-                        printf("\nRight bumpers pushed in");
+                        printf("\r\nRight bumpers pushed in");
                         break;
                     case (FLEFT_BUMP_MASK | RLEFT_BUMP_MASK): 
-                        printf("\nLeft bumpers pushed in");
+                        printf("\r\nLeft bumpers pushed in");
                         break;
                     default:
-                        printf("\nNo bumpers pushed in");
+                        printf("\r\nNo bumpers pushed in");
                         break;
                 }
                 break;
@@ -153,7 +153,7 @@ int main(void){
                     scaledValue /= 1023;
                     Roach_BarGraph(scaledValue);
                 }
-                printf("\nTest finished.\n");
+                printf("\r\nTest finished.\n");
                 break;
 
             case 'c': //test lightbar
@@ -175,7 +175,7 @@ int main(void){
                 break;
 
             default:
-                printf("Invalid keypress, try again\n");
+                printf("\r\nInvalid keypress, try again");
                 break;
         }
         DELAY(A_LOT);

@@ -27,16 +27,22 @@
  ******************************************************************************/
 
 #include "ES_Configure.h"
-#include "SimpleEventChecker.h"
+#include "BetterEventChecker.h"
 #include <ES_Events.h>
 #include "AD.h"
 #include <roach.h>
+#include <stdio.h>
 
 /*******************************************************************************
  * MODULE #DEFINES                                                             *
  ******************************************************************************/
-#define LIGHT_THRESHOLD 512
+#define LIGHT_LOW_THRESHOLD 470
+#define LIGHT_HIGH_THRESHOLD 500
 
+#define FLEFT_BUMP_MASK (1)
+#define FRIGHT_BUMP_MASK (1<<1)
+#define RLEFT_BUMP_MASK (1<<2)
+#define RRIGHT_BUMP_MASK (1<<3)
 /*******************************************************************************
  * EVENTCHECKER_TEST SPECIFIC CODE                                                             *
  ******************************************************************************/
@@ -88,38 +94,44 @@ static ES_Event storedEvent;
  * @author Gabriel H Elkaim, 2013.09.27 09:18
  * @modified Gabriel H Elkaim/Max Dunne, 2016.09.12 20:08 */
 uint8_t BetterCheckLightSensor(void) {
-    static ES_EventTyp_t lastEvent = LIGHT_SENSOR_LIGHT;
+    static ES_EventTyp_t lastEvent = LIGHT_SENSOR_DARK;
     ES_EventTyp_t curEvent;
     ES_Event thisEvent;
     uint8_t returnVal = FALSE;
     unsigned int scaledValue = Roach_LightLevel(); // read the battery voltage
-    if (scaledValue > LIGHT_THRESHOLD) { // is battery connected?
+    if (scaledValue > LIGHT_HIGH_THRESHOLD) {
         curEvent = LIGHT_SENSOR_DARK;
-    } else {
+    } else if(scaledValue < LIGHT_LOW_THRESHOLD){
         curEvent = LIGHT_SENSOR_LIGHT;
+    } else{
+        curEvent = lastEvent;
     }
     if (curEvent != lastEvent) { // check for change from last time
         thisEvent.EventType = curEvent;
         thisEvent.EventParam = scaledValue;
         returnVal = TRUE;
         lastEvent = curEvent; // update history
-#ifndef BETTER_EVENTCHECKER_TEST           // keep this as is for test harness
-    PostLightSensorService(thisEvent); // Change it to your target service's post function
-#else
-        SaveEvent(thisEvent);
-#endif   
+        switch(thisEvent.EventType){
+            case LIGHT_SENSOR_DARK:
+                printf("\r\nLight sensor is in dark!");
+                break;
+            case LIGHT_SENSOR_LIGHT:
+                printf("\r\nLight sensor is in light!");
+                break;
+        }
     }
     return (returnVal);
 }
 
-uint8_t BetterCheckBumpers(void) {
+uint8_t CheckFrontRightBumper(void) {
     static ES_EventTyp_t lastEvent = BUMPERS_UNBUMPED;
+    static unsigned char lastBumperState = 0;
     ES_EventTyp_t curEvent;
     ES_Event thisEvent;
     uint8_t returnVal = FALSE;
     unsigned char bumperState = Roach_ReadBumpers();
     
-    if((bumperState & 0x1) | (bumperState & 0x2) | (bumperState & 0x4) | (bumperState & 0x8))
+    if(bumperState & 0x2)
         curEvent = BUMPERS_BUMPED;
     else
         curEvent = BUMPERS_UNBUMPED;
@@ -129,12 +141,100 @@ uint8_t BetterCheckBumpers(void) {
         thisEvent.EventParam = bumperState;
         returnVal = TRUE;
         lastEvent = curEvent; // update history
-#ifndef BETTER_EVENTCHECKER_TEST           // keep this as is for test harness
-    PostBumperService(thisEvent);
-    // Change it to your target service's post function
-#else
-        SaveEvent(thisEvent);
-#endif   
+        lastBumperState = bumperState;
+        
+        if(bumperState & FRIGHT_BUMP_MASK){
+            printf("\r\nFront right bumped");
+        }else{
+            printf("\r\nFront right unbumped");
+        }
+    }
+    return (returnVal);
+}
+
+uint8_t CheckFrontLeftBumper(void) {
+    static ES_EventTyp_t lastEvent = BUMPERS_UNBUMPED;
+    static unsigned char lastBumperState = 0;
+    ES_EventTyp_t curEvent;
+    ES_Event thisEvent;
+    uint8_t returnVal = FALSE;
+    unsigned char bumperState = Roach_ReadBumpers();
+    
+    if(bumperState & 0x1)
+        curEvent = BUMPERS_BUMPED;
+    else
+        curEvent = BUMPERS_UNBUMPED;
+    
+    if (curEvent != lastEvent) { // check for change from last time
+        thisEvent.EventType = curEvent;
+        thisEvent.EventParam = bumperState;
+        returnVal = TRUE;
+        lastEvent = curEvent; // update history
+        lastBumperState = bumperState;
+        
+        if(bumperState & FLEFT_BUMP_MASK){
+            printf("\r\nFront left bumped");
+        }else{
+            printf("\r\nFront left unbumped");
+        }
+    }
+    return (returnVal);
+}
+
+uint8_t CheckRearRightBumper(void) {
+    static ES_EventTyp_t lastEvent = BUMPERS_UNBUMPED;
+    static unsigned char lastBumperState = 0;
+    ES_EventTyp_t curEvent;
+    ES_Event thisEvent;
+    uint8_t returnVal = FALSE;
+    unsigned char bumperState = Roach_ReadBumpers();
+    
+    if(bumperState & 0x8)
+        curEvent = BUMPERS_BUMPED;
+    else
+        curEvent = BUMPERS_UNBUMPED;
+    
+    if (curEvent != lastEvent) { // check for change from last time
+        thisEvent.EventType = curEvent;
+        thisEvent.EventParam = bumperState;
+        returnVal = TRUE;
+        lastEvent = curEvent; // update history
+        lastBumperState = bumperState;
+        
+        if(bumperState & RRIGHT_BUMP_MASK){
+            printf("\r\nRear right bumped");
+        }else{
+            printf("\r\nRear right unbumped");
+        }
+    }
+    return (returnVal);
+}
+
+uint8_t CheckRearLeftBumper(void) {
+    static ES_EventTyp_t lastEvent = BUMPERS_UNBUMPED;
+    static unsigned char lastBumperState = 0;
+    ES_EventTyp_t curEvent;
+    ES_Event thisEvent;
+    uint8_t returnVal = FALSE;
+    unsigned char bumperState = Roach_ReadBumpers();
+    
+    if(bumperState & 0x4)
+        curEvent = BUMPERS_BUMPED;
+    else
+        curEvent = BUMPERS_UNBUMPED;
+    
+    if (curEvent != lastEvent) { // check for change from last time
+        thisEvent.EventType = curEvent;
+        thisEvent.EventParam = bumperState;
+        returnVal = TRUE;
+        lastEvent = curEvent; // update history
+        lastBumperState = bumperState;
+        
+        if(bumperState & RLEFT_BUMP_MASK){
+            printf("\r\nRear Left bumped");
+        }else{
+            printf("\r\nRear Left unbumped");
+        }
     }
     return (returnVal);
 }

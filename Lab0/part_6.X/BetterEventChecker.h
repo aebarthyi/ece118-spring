@@ -19,8 +19,8 @@
  * Modified on September 12, 2016, 7:59 PM
  */
 
-#ifndef SIMPLEEVENTCHECKER_H
-#define	SIMPLEEVENTCHECKER_H
+#ifndef BETTEREVENTCHECKER_H
+#define	BETTEREVENTCHECKER_H
 
 /*******************************************************************************
  * PUBLIC #INCLUDES                                                            *
@@ -59,7 +59,10 @@
  * @modified Gabriel H Elkaim/Max Dunne, 2016.09.12 20:08 */
 uint8_t BetterCheckLightSensor(void);
 
-uint8_t BetterCheckBumpers(void);
+uint8_t CheckFrontRightBumper(void);
+uint8_t CheckFrontLeftBumper(void);
+uint8_t CheckRearRightBumper(void);
+uint8_t CheckRearLeftBumper(void);
 
 void PrintEvent(void);
 
