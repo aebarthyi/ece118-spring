@@ -30,3 +30,14 @@ Lab*/part_*/.generated_files/
 Lab*/.generated_files
 Lab*/nbproject/private/
 Lab*/nbproject/Makefile-*
+Lab*/nbproject/Package-*.bash
+Lab*/build/
+Lab*/nbbuild/
+Lab*/dist/
+Lab*/nbdist/
+Lab*/nbactions.xml
+Lab*/nb-configuration.xml
+Lab*/funclist
+Lab*/nbproject/Makefile-*
+Lab*/disassembly/
+

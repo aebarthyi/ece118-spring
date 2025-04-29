@@ -159,7 +159,6 @@ ES_Event RunTemplateHSM(ES_Event ThisEvent)
         break;
 
     case HiddenTopState: // in the first state, replace this with appropriate state
-        ThisEvent = RunTemplateSubHSM(ThisEvent);
         if (ThisEvent.EventType == LIGHT_SENSOR_LIGHT)//we are in light
         {
             // this is where you would put any actions associated with the
@@ -167,6 +166,7 @@ ES_Event RunTemplateHSM(ES_Event ThisEvent)
             // initial state
 
             // now put the machine into the actual initial state
+            InitTemplateSubHSMM();
             nextState = MoveTopState;
             makeTransition = TRUE;
         } else {
@@ -177,8 +177,6 @@ ES_Event RunTemplateHSM(ES_Event ThisEvent)
 
 
     case MoveTopState: // in the first state, replace this with appropriate state
-        leftMotorSpeed = 100;
-        rightMotorSpeed = 100;
         if (ThisEvent.EventType == LIGHT_SENSOR_DARK)//we are in light
         {
             // this is where you would put any actions associated with the
@@ -186,6 +184,7 @@ ES_Event RunTemplateHSM(ES_Event ThisEvent)
             // initial state
 
             // now put the machine into the actual initial state
+            InitTemplateSubHSM();
             nextState = HiddenTopState;
             makeTransition = TRUE;
         } else {
@@ -196,8 +195,6 @@ ES_Event RunTemplateHSM(ES_Event ThisEvent)
     default: // all unhandled states fall into here
         break;
     } // end switch on Current State
-    Roach_LeftMtrSpeed(leftMotorSpeed);
-    Roach_RightMtrSpeed(rightMotorSpeed);
     if (makeTransition == TRUE) { // making a state transition, send EXIT and ENTRY
         // recursively call the current state with an exit event
         RunTemplateHSM(EXIT_EVENT);

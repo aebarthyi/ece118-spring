@@ -143,12 +143,12 @@ ES_Event RunTemplateSubHSM(ES_Event ThisEvent)
             uint8_t bumperMask = ThisEvent.EventParam;
             // Check for front bumper activation: bits 3 (Front Right) or 2 (Front Left)
             if ((bumperMask & 0x8) | (bumperMask & 0x4)) {
-                nextState = MoveBackward;
+                nextState = MoveForward;
                 makeTransition = TRUE;
                 ThisEvent.EventType = ES_NO_EVENT;
             }
             else if ((bumperMask & 0x2) | (bumperMask & 0x1)) {
-                nextState = MoveForward;
+                nextState = MoveBackward;
                 makeTransition = TRUE;
                 ThisEvent.EventType = ES_NO_EVENT;
             }

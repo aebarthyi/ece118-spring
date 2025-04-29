@@ -181,6 +181,10 @@ ES_Event RunTemplateSubHSMM(ES_Event ThisEvent)
                 nextState = SpinRight;
                 makeTransition = TRUE;
             }
+            else{
+                nextState = MoveState;
+                makeTransition = TRUE;
+            }
         }
         break;
         
@@ -210,25 +214,28 @@ ES_Event RunTemplateSubHSMM(ES_Event ThisEvent)
 
     case DanceState: // in the first state, replace this with correct name
         if(ThisEvent.EventType == ES_ENTRY){
-            ES_Timer_InitTimer(0, 5000);
+            ES_Timer_InitTimer(1, 4000);
             Roach_LeftMtrSpeed(-100);
             Roach_RightMtrSpeed(100);
-        } else if (ThisEvent.EventType == ES_TIMEOUT)//we are in light
+        } else if (ThisEvent.EventType == ES_TIMEOUT && ThisEvent.EventParam == 1)//we are in light
         {
             nextState = MoveState;
+            makeTransition = TRUE;
+            ThisEvent.EventType = ES_NO_EVENT;
         }
+        printf("\r\nwe are in the dance sub state");
         break;
         
     case ExitState:
-            // Process exit state events
-            if (ThisEvent.EventType == ES_ENTRY) {
-                // For example: stop timers or perform shutdown routines here.
-                nextState = MoveState;
-                makeTransition = TRUE;
-                ThisEvent.EventType = ES_NO_EVENT;
-                ES_Timer_StopTimer(1);
-            }
-            break;
+        // Process exit state events
+        if (ThisEvent.EventType == ES_ENTRY) {
+            // For example: stop timers or perform shutdown routines here.
+            nextState = MoveState;
+            makeTransition = TRUE;
+            ThisEvent.EventType = ES_NO_EVENT;
+            ES_Timer_StopTimer(1);
+        }
+        break;
         
     default: // all unhandled states fall into here
         break;
